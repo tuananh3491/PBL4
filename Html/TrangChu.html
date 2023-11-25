@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="../js/bootstrapjs/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="..\css\TrangChu.css">
+    <script src="..\js\TrangChu.js"></script>
+</head>
+<body>
+
+    <div class="background-container">
+    <!-- thanh header trang chủ -->
+    <header>
+        <nav class="navbar navbar-expand-sm nav-header">
+            <div class="container-fluid header ">
+                <div class="navbar-header">
+                    <a href="../Html/TrangChu.html" class="btn-header logo-text">uQuizzes</a>
+                </div>
+               
+                <form class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right parent-buttons-header">
+                    <li class="buttons-header" >
+                        <a class="btn-header" href="../Html/Register.html">Đăng ký</a>
+                    </li>
+                    <li class="buttons-header">
+                        <a class="btn-header" href="../Html/Login.html">Đăng nhập</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+    </header>
+    <section>
+        <div class="container section1">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="p1-parent">
+                        <h4 class="p1">THÁCH THỨC</h4>
+                        <h4 class="p1">ĐỐI ĐẦU</h4>
+                        <h4 class="p1">THÚ VỊ</h4>
+                    </div>
+                    <div class="p2-parent">
+                        <p>Chịu thử thách, vuợt qua giới hạn trí tuệ của bạn với những cuộc đối đầu trong uQuizzes</p>
+                    </div>
+                    <div class="p3-parent">
+                        <form class="d-flex">
+                                <button type="button" class="btn btn-primary icon-button" >Bắt đầu trò chơi
+                                    <i class="fa-solid fa-gamepad"></i>
+                                </button>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 homeimage" >
+                    <div style="padding: 50px" class="anhTrangChu">
+                        <img src="../picture/HomeImage1.png" ; alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    </div>
+    <section>
+        <div class="container-fluid Raw-Container">
+            <div >
+                <h2 class="Raw-title" style="margin: 0">THỂ THỨC TRÒ CHƠI</h2>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid pRaw-box">
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="Raw-box">
+                        <div class="Raw-type RT1">
+                            <p class="pTitle">Đấu thường (1 vs 1)</p>
+                        </div>
+                        <div class="Raw">
+                            <ul>
+                                <li>
+                                    Người chơi tự động được ghép cặp trong 30s, nếu chưa tìm được thì đưa trở lại sảnh chờ
+                                </li>
+                                <li>Các người chơi khi ghép đấu phải cùng hạng với nhau</li>
+                                <li>Bộ câu hỏi sẽ không cố định ở 1 lĩnh vực mà là nhiều lĩnh vực</li>
+                                <li>Sau khi kết thúc thì điểm ai cao hơn sẽ thắng trận (có thể có bảng thông số giữa 2 người chơi)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="Raw-box">
+                        <div class="Raw-type RT2">
+                            <p class="pTitle">Đấu đội (3 vs 3)</p>
+                        </div>
+                        <div class="Raw">
+                            <ul>
+                                <li>Người chơi có thể tạo phòng hoặc vào phòng dựa trên hạng người chơi đó</li>
+                                <li>Vào phòng có thể chọn phòng hoặc chọn ngẫu nhiên</li>
+                                <li>Các người chơi trong phòng phải sẵn sàng trước khi chủ phòng nhấn thi đấu</li>
+                                <li>Khi chủ phòng nhấn thi đấu thì phòng đó sẽ được ghép cặp với phòng khác đã nhấn thi đấu</li>
+                                <li>Từng người chơi sẽ ghép cặp với người chơi ở phòng đã ghép, chia làm 3 vòng, 3 vòng có thể diễn ra đồng thời</li>
+                                <li>Bộ câu hỏi cũng ở nhiều lĩnh vực</li>
+                                <li>Chức năng phát đề tương tự như trên, các vòng đều chung 1 bộ câu hỏi</li>
+                                <li>Sau khi kết thúc thì đội nào thắng nhiều vòng hơn sẽ chiến thắng</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="Raw-box">
+                        <div class="Raw-type RT3">
+                            <p class="pTitle">Đấu hạng (free-for-all)</p>
+                        </div>
+                        <div class="Raw">
+                            <ul>
+                                <li>Đấu hạng sẽ thuộc kiểu free-for-all</li>
+                                <li>Số câu hỏi và cách random cũng như trong đấu thường 1x1 (cùng cách phát câu hỏi)</li>
+                                <li>7 người chơi sẽ đấu nhau để giành thứ bậc</li>
+                                <li>Mỗi bậc sẽ có cách cộng điểm khác nhau</li>
+                                <li>Khi điểm đạt đến mức độ nhất định sẽ được lên hạng, nếu điểm không đủ yêu cầu tối thiểu thì sẽ bị xuống hạng</li>
+                                <li>Ngoài ra còn có thể coi bảng xếp hạng người chơi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container-fluid ">
+        
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+@font-face {
+    font-family: 'Titan One';
+    src: url('../font/TitanOne-Regular.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Nunito-Black';
+    src: url('../font/Nunito-Black.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Quicksand-Bold';
+    src: url('../font/Quicksand-Bold.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --trangchu-color: #3166C7;
+    --theThuc-color: #F1F1F1;
+    --font-family: 'Quicksand-Bold' , sans-serif;
+    --font-logo: 'Titan One' , sans-serif;
+}
+
+body{
+    background-size: cover;
+    background-attachment: fixed;
+}
+.background-container{
+    height: 100vh; 
+    background-image: url('../picture/background.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+/* thanh header trang chu */
+.nav-header{
+    padding: 0%;
+    color: white;
+}
+.header{
+    background-color: var(--trangchu-color);
+    height: 55px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-header .header .logo-text{
+    margin: auto;
+    font-family: var(--font-logo);
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
+.timkiem{
+    display: flex;
+}
+.nav-header .header .parent-buttons-header{
+    display: flex;
+    color: white;
+    font-size: 18px;
+}
+.nav-header .header .parent-buttons-header .buttons-header{
+    display: block;
+    margin: 10px;
+}
+.btn-header{
+    color: white; 
+    text-decoration: none; 
+}
+.nav-header .header .parent-buttons-header .buttons-header .btn-header:hover{
+    color: rgb(244, 244, 244); 
+}
+
+
+section{
+    margin: 50px auto;
+}
+.anhTrangChu{
+    width: 554px;
+    height: 348px;
+}
+
+
+/* section1 */
+.section1{
+    padding: 0;
+}
+.section1 .p1-parent{
+    padding-top: 70px;
+}
+.section1 .p1-parent .p1{
+    color: var(--trangchu-color);
+    font-family: 'Nunito-Black',sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+}
+.section1 .p2-parent{
+    padding-right: 250px;
+    color: var(--trangchu-color);
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+}
+.icon-button{
+    background-color: var(--trangchu-color);
+    margin-right: 5px;
+    display: block;
+    font-family:'Nunito-Black',sans-serif ;
+    font-size: 25px;
+}
+
+
+.Raw-Container{
+    background-color: var(--theThuc-color);
+    height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+}
+.Raw-Container .Raw-title{
+    color: #3A3A3A; 
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.Raw-box{
+    background-color: var(--theThuc-color);
+    width: 450px;
+    height: 600px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Raw-box .Raw-type{
+    width: 100%;
+    background-color: #3166C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+}
+.Raw-box .RT2{
+    background-color:#CF3943;
+}
+.Raw-box .RT3{
+    background-color:#F3AF56;
+}
+.Raw-box .Raw-type .pTitle{
+    padding: 10px;
+    margin: 0;
+}
+.Raw-box .Raw{
+    padding: 5px;
+    font-family: var(--font-family);
+    font-weight: bold;
+}
+.d-flex button:hover{
+    color: #000000;
+}
