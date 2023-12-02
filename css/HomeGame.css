@@ -1,0 +1,20 @@
+.main-container{
+    background-color: #0BC2CF;
+    width: 100vw;
+    height: 100vh;
+}
+.menu{
+    height: 100%;
+    width: 20%;
+    background-color: #9A49AA;
+    box-shadow: 5px 0 0 0 rgba(123, 58, 136, 1);
+}
+
+.logo-text{
+    margin: auto;
+    font-family: var(--font-logo);
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none; 
+}
