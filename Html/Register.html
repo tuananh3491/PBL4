@@ -38,34 +38,34 @@
                     <div class="inputregister">
                         <p class="titlelogin">Tài khoản</p>
                         <div class="user">
-                            <input class="form-control inputtxt" type="text" style="width: 250px;">
+                            <input class="form-control inputtxt" id="inp-user" type="text" style="width: 250px;">
                         </div>
                     </div>
                     <div class="inputregister">
                         <p class="titlelogin">Mật khẩu</p>
                         <div class="user">
-                            <input class="form-control inputtxt" type="password" style="width: 250px;">
+                            <input class="form-control inputtxt" id="inp-password" type="password" style="width: 250px;">
                         </div>
                     </div>
                     <div class="inputregister">
                         <p class="titlelogin">Email</p>
                         <div class="user">
-                            <input class="form-control inputtxt" type="text" style="width: 250px;">
+                            <input class="form-control inputtxt" id="inp-email" type="text" style="width: 250px;">
                         </div>
                     </div>
                     <div class="inputGender">
                         <p class="titlelogin" style="padding-right: 20px;">Giới tính:</p>
                         <div class="user">
                             <label for="" style="padding-right: 20px;">
-                                <input type="radio" name="Gender"  value="Nam"> Nam
+                                <input type="radio" name="Gender" value="true"> Nam
                             </label>
                             <label for="">
-                                <input type="radio" name="Gender"  value="Nam"> Nữ
+                                <input type="radio" name="Gender" value="false"> Nữ
                             </label>
                         </div>
                     </div>
                     <div class="" style="padding: 10px;">
-                        <input class="btnLogin" type="button" value="ĐĂNG KÝ">
+                        <input class="btnLogin" id="inp-submit" type="button" value="ĐĂNG KÝ">
                     </div>
                     <div class="register">
                         <p style="margin: 0; padding-right: 10px; ">Bạn đã có tài khoản?</p>
@@ -75,5 +75,6 @@
             </form>
         </div>
     </div>
+    <script src="../js/Register.js"></script>
 </body>
 </html>
