@@ -30,12 +30,14 @@
     position: relative;
     width: 100vw;
     height: 100vh;
+    display: flex;
 }
 .menu{
     height: 100%;
     width: 20%;
     background-color: #9A49AA;
     box-shadow: 5px 0 0 0 rgba(123, 58, 136, 1);
+    margin-right: 5px;
     text-align: center;
 }
 .header{
@@ -93,7 +95,27 @@
     font-family: var(--font-family);
     font-size: 20px;
 }
-/* nút bên trái */
+/* main game */
+.main-container .game-main{
+    flex-grow: 1;
+    background-color: #0BC2CF;
+    margin-top: 70px;
+    margin-left: 30px;
+}
+.main-container .game-main .avatar{
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+}
+
+
+
+
+
+
+
+
+/* nút bên phải*/
 .custom-dropdown {
     position: absolute;
     display: inline-block;
@@ -134,14 +156,14 @@
     border: none;
     background: none;
     cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 12px;
 }
 
 .account-button:hover, .logout-button:hover {
     background-color: #ddd;
+    border-radius: 5px;
 }
 
-.custom-dropdown:hover .dropdown-content {
-    display: block;
-}
 
 
