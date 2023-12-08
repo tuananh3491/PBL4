@@ -102,10 +102,27 @@
     margin-top: 70px;
     margin-left: 30px;
 }
-.main-container .game-main .avatar{
+.main-container .game-main .Profile{
+    display: flex;
+    flex-direction: row;
+}
+.main-container .game-main .Profile .avatar{
     width: 100px;
     height: 100px;
     background-color: #ddd;
+    margin-right: 8px;
+}
+.main-container .game-main .Profile .igame{
+    border: none;
+    background-color: #655DCA;
+    height: 40px;
+
+
+}
+.main-container .game-main .Profile .match{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
 }
 
 
