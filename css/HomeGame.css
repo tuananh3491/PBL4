@@ -98,12 +98,16 @@
 .main-container .game-main{
     flex-grow: 1;
     background-color: #0BC2CF;
-    margin-top: 70px;
+    margin-top: 20px;
     margin-left: 30px;
 }
+
+/* home */
 .main-container .game-main .Profile{
     display: flex;
     flex-direction: row;
+    font-family: var(--font-family);
+    margin-top: 70px;
 }
 .main-container .game-main .Profile .avatar{
     width: 100px;
@@ -116,21 +120,80 @@
     background-color: #655DCA;
     height: 40px;
     width: fit-content;
-
+    color: white;
+    width: 50%;
+    padding-left: 10px;
 }
 .main-container .game-main .Profile .match{
     display: flex;
     flex-direction: column;
     padding-bottom: 5px;
+    color: white;
+}
+
+/* list room */
+.main-container .game-main .room{
+    display: none;
+    flex-direction: column;
+    font-family: var(--font-family);
+    color: white;
+}
+.main-container .game-main .room .list-room{
+    width: 80%;
+    height: 500px;
+    background-color: #9A49AA;
+}
+.main-container .game-main .room .btn-inroom{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+}
+.main-container .game-main .room .btn-inroom .inroom-button{
+    background-color: #FEB31A;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    border: 5px solid #EF7426;
+    font-size: 20px;
+    font-family: var(--font-family);
+    color: white;
 }
 
 
-
-
-
-
-
-
+/* create room */
+.main-container .game-main .create-room{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 400px;
+    height: 300px;
+    background-color: #9A49AA;
+    padding: 5px;
+    font-family: var(--font-family);
+    color: white;
+}
+.main-container .game-main .create-room .room-name{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.main-container .game-main .create-room .number-person{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    padding-bottom: 20px ;
+}
+.main-container .game-main .create-room .btn-create{
+    background-color: #FEB31A;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    border: 5px solid #EF7426;
+    font-size: 20px;
+    font-family: var(--font-family);
+    color: white;
+}
 /* nút bên phải*/
 .custom-dropdown {
     position: absolute;
@@ -152,6 +215,19 @@
     border-bottom-right-radius: 7px;
     box-shadow: 0 5px 0 0 rgba(123, 58, 136, 1);
     cursor: pointer;
+}
+.dropdown-button .inp-igame{
+    padding: 0;
+    background-color: none;
+    border: none;
+    text-align: center;
+    width: 100px;
+    background-color: #9A49AA;
+    color: white;
+}
+.dropdown-button .inp-igame:focus{
+    border: none;
+    
 }
 
 .dropdown-content {

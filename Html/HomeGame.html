@@ -17,17 +17,17 @@
                 <a href="../Html/TrangChu.html" class="btn-header logo-text">uQuizzes</a>
             </div>
             <div class="btn-play">
-                <button type="button" class="btn btn-primary icon-button" >
+                <button type="button" class="btn btn-primary icon-button" onclick="createRoom()">
                     <i class="fa-solid fa-play"></i>
-                    Chơi
+                    Tạo phòng
                 </button>
             </div>
             <div class="menu-button">
-                <button type="button" class=" button-menu" >
+                <button type="button" class=" button-menu btn-roomfight" onclick="listRoom()">
                     <i class="fa-solid fa-ticket iconbtn"></i>
                     Phòng đấu
                 </button>
-                <button type="button" class=" button-menu" >
+                <button type="button" class=" button-menu " >
                     <i class="fa-solid fa-feather iconbtn"></i>
                     Luyện tập
                 </button>
@@ -43,22 +43,54 @@
                     
                 </div>
                 <div class="name-igame">
-                    <input type="text" class="igame" id="inp-name">
+                    <input type="text" class="igame inp-name" disabled>
                     <div class="match">
                         <div style="display: flex;">
                             <p>Số trận:</p>
-                            <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF; height: 25px;">
+                            <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF;color:white; height: 25px;" disabled>
                         </div>
                         <div style="display: flex;">
                             <p>Thắng:</p>
-                            <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;">
+                            <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;color: white; height: 25px;"disabled>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="room">
+                <h2>Danh sách phòng</h2>
+                <div class="list-room">
+
+                </div>
+                <div class="btn-inroom">
+                    <button class="inroom-button">
+                        Vào phòng
+                    </button>
+                </div>
+            </div>
+            <div class="create-room">
+                <form action="">
+                    <h3 style="padding: 10px;">Tạo phòng</h3>
+                    <div class="room-name">
+                        <p style="margin: 0; padding-right: 10px;">Tên phòng:</p>
+                        <input type="text" name="" id="" class="name-room">
+                    </div>
+                    <div class="number-person">
+                        <p style="margin: 0; padding-right: 10px;">Giới hạn người:</p>
+                        <label for="" style="padding-right: 20px;">
+                            <input type="radio" name="slot" value="true"> 2 người
+                        </label>
+                        <label for="">
+                            <input type="radio" name="slot" value="false"> 4 người
+                        </label>
+                    </div>
+                    <button class="btn-create">Tạo phòng</button>
+                </form>
+            </div>
         </div>
         <div class="custom-dropdown">
-            <button class="dropdown-button" onclick="toggleDropdown()">Ingame</button>
+            <button class="dropdown-button" onclick="toggleDropdown()" >
+                <input type="text" class="inp-name inp-igame" disabled>
+            </button>
             <div class="dropdown-content">
                 <button class="account-button">
                     <i class="fa-solid fa-gear"></i>
