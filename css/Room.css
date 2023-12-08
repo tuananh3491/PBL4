@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Titan One';
+    src: url('../font/TitanOne-Regular.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Nunito-Black';
+    src: url('../font/Nunito-Black.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Quicksand-Bold';
+    src: url('../font/Quicksand-Bold.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --trangchu-color: #3166C7;
+    --theThuc-color: #F1F1F1;
+    --font-family: 'Quicksand-Bold' , sans-serif;
+    --font-logo: 'Titan One' , sans-serif;
+}
+.main-container{
+    background-color: #0BC2CF;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.main-container .custom-dropdown{
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+}
+.main-container .dropdown-button{
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #9A49AA;
+    color: #fff;
+    font-family: "Nunito-Black", sans-serif ;
+    font-size: 20px;
+    border: none;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    box-shadow: 0 5px 0 0 rgba(123, 58, 136, 1);
+    cursor: pointer;
+}
+.main-container .list-attend{
+    width: 950px;
+    height: 500px;
+    background-color: #9A49AA;
+    margin-top: 70px;
+    margin-left: 100px;
+    border-radius: 10px;
+}
+
+.main-container .inf-room{
+    position: fixed;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    right: 10%;
+    top: 10%;
+}
+
+.main-container .btn-exit{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 10px;
+    background-color: none;
+}
+.main-container .btn-exit .exit-button{
+    background-color: #0BC2CF;
+    border: none;
+    font-size: 50px;
+    color: white;
+}
+.main-container .btn-exit .exit-button:hover{
+    color: #9A49AA;
+}
+
+.main-container .btn-ready{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+}
+.main-container .btn-ready .ready-button{
+    background-color: #FEB31A;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    border: 5px solid #EF7426;
+    font-size: 20px;
+    font-family: var(--font-family);
+    color: white;
+}

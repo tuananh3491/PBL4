@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/HomeGame.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="../js/bootstrapjs/bootstrap.bundle.js"></script>
+    <script src="../js/HomeGame.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -35,14 +36,24 @@
                     <i class="fas fa-trophy iconbtn"></i>
                     Xếp hạng
                 </button>
-                <button type="button" class=" button-menu" >
-                    <i class="fa-solid fa-clock-rotate-left iconbtn"></i>
-                    Lịch sử
-                </button>
             </div>   
         </div>
+        <div class="game-main">
+            <div class="Profile">
+                <div class="avatar">
+                    
+                </div>
+                <div class="name-igame">
+                    <input type="text" class="igame">
+                    <div class="match">
+                        <p>Số trận:</p>
+                        <p>Thắng:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="custom-dropdown">
-            <button class="dropdown-button">Ingame</button>
+            <button class="dropdown-button" onclick="toggleDropdown()">Ingame</button>
             <div class="dropdown-content">
                 <button class="account-button">
                     <i class="fa-solid fa-gear"></i>
