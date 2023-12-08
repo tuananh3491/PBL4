@@ -3,8 +3,17 @@ function toggleDropdown() {
     dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
 }
 
+function listRoom(){
+    var list= document.querySelector('.room');
+    list.style.display = 'flex';
+}
+function createRoom(){
+    var list= document.querySelector('.create-room');
+    list.style.display = 'flex';
+}
+
 const profile = {
-    name: document.querySelector("#inp-name"),
+    name: document.querySelectorAll(".inp-name"),
     gamePlayed: document.querySelector("#inp-played"),
     gameWon: document.querySelector("#inp-win")
 }
@@ -14,7 +23,8 @@ if (objdata) {
     console.log(objdata);
 
     if ('name' in objdata) {
-        profile.name.value = objdata['name'];
+        profile.name[0].value = objdata['name'];
+        profile.name[1].value = objdata['name'];
     }
 
     if (objdata["rank_statistic"]) {
