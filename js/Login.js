@@ -7,7 +7,7 @@ const form = {
 async function getData(url = "", data = []) {
     // Default options are marked with *
     const response = await fetch(url, {
-        method: 'GET',
+        method: 'PUT',
         headers: {
             "Content-Type": "application/json"
         },
@@ -25,7 +25,7 @@ let button = form.submit.addEventListener("click", (e) => {
             alert("dữ liệu không thể cập nhật vào dữ liệu."); // Hiển thị thông báo lỗi
         } else {
             localStorage.setItem('data', JSON.stringify(data));
-            window.location.href = '../Html/TrangChu.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
+            window.location.href = '../Html/HomeGame.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
         }
     }).catch((err) =>{
         console.log(err);
