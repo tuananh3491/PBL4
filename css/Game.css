@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Titan One';
+    src: url('../font/TitanOne-Regular.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Nunito-Black';
+    src: url('../font/Nunito-Black.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Quicksand-Bold';
+    src: url('../font/Quicksand-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --trangchu-color: #3166C7;
+    --theThuc-color: #F1F1F1;
+    --font-family: 'Quicksand-Bold' , sans-serif;
+    --font-logo: 'Titan One' , sans-serif;
+}
+body{
+    background-image: url(../picture/backgound-game.jpg);
+    background-size: cover;
+    background-repeat: none;
+    opacity: 1;
+}
+.main-container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container .quizz{
+    margin-top: 20px;
+    width: 80%;
+    position: absolute;
+    text-align: center;
+}
+.main-container .quizz .quizz-inf{
+    width: 80%;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    font-size: 20px;
+}

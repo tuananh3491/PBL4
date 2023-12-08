@@ -1,18 +1,17 @@
 @font-face {
     font-family: 'Titan One';
-    src: url('../font/TitanOne-Regular.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
-    font-weight: normal;
+    src: url('../font/TitanOne-Regular.ttf') format('truetype'); 
     font-style: normal;
 }
 @font-face {
     font-family: 'Nunito-Black';
-    src: url('../font/Nunito-Black.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    src: url('../font/Nunito-Black.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Quicksand-Bold';
-    src: url('../font/Quicksand-Bold.ttf') format('truetype'); /* Điều chỉnh đường dẫn và định dạng tùy thuộc vào tập tin font bạn đang sử dụng */
+    src: url('../font/Quicksand-Bold.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
 }
