@@ -115,7 +115,7 @@
     border: none;
     background-color: #655DCA;
     height: 40px;
-
+    width: fit-content;
 
 }
 .main-container .game-main .Profile .match{

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../css/HomeGame.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="../js/bootstrapjs/bootstrap.bundle.js"></script>
-    <script src="../js/HomeGame.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -44,10 +43,16 @@
                     
                 </div>
                 <div class="name-igame">
-                    <input type="text" class="igame">
+                    <input type="text" class="igame" id="inp-name">
                     <div class="match">
-                        <p>Số trận:</p>
-                        <p>Thắng:</p>
+                        <div style="display: flex;">
+                            <p>Số trận:</p>
+                            <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF; height: 25px;">
+                        </div>
+                        <div style="display: flex;">
+                            <p>Thắng:</p>
+                            <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,5 +69,6 @@
             </div>
         </div>
     </div>
+    <script src="../js/HomeGame.js"></script>
 </body>
 </html>
