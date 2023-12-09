@@ -1,15 +1,20 @@
+var _profile = document.querySelector('.Profile');
+var list= document.querySelector('.room');
+var create= document.querySelector('.create-room');
 function toggleDropdown() {
     var dropdownContent = document.querySelector('.dropdown-content');
     dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
 }
 
 function listRoom(){
-    var list= document.querySelector('.room');
+    create.style.display = 'none';
+    _profile.style.display = 'none';
     list.style.display = 'flex';
 }
 function createRoom(){
-    var list= document.querySelector('.create-room');
-    list.style.display = 'flex';
+    create.style.display = 'flex';
+    _profile.style.display = 'none';
+    list.style.display = 'none';
 }
 
 const profile = {

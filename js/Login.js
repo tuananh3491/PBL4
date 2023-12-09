@@ -6,6 +6,7 @@ const form = {
 
 async function getData(url = "", data = []) {
     // Default options are marked with *
+    console.log(data);
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -14,20 +15,35 @@ async function getData(url = "", data = []) {
         mode: "cors",
         body: JSON.stringify(data)
     });
-    return response.json(); // parses JSON response into native JavaScript objects
+    console.log(response);
+    if (response.status === 200) return response.json();
+    else return null;
+     // parses JSON response into native JavaScript objects
 }
 
 let button = form.submit.addEventListener("click", (e) => {
     e.preventDefault();
+    if(form.email.value === ""){
+        alert("Vui lòng điền tên tài khoản");
+        return;
+    }
+    else if(form.password.value === ""){
+        alert("Vui lòng điền mật khẩu");
+        return;
+    }
+    else {
+    
     const login = 'http://localhost:8080/api/user/login';
     getData(login, [form.email.value, form.password.value]).then((data) => {
         if (data == null) {
-            alert("dữ liệu không thể cập nhật vào dữ liệu."); // Hiển thị thông báo lỗi
+            alert("Sai tài khoản hoặc mật khẩu!"); // Hiển thị thông báo lỗi
         } else {
+            alert("Đăng nhập thành công");
             localStorage.setItem('data', JSON.stringify(data));
             window.location.href = '../Html/HomeGame.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
         }
     }).catch((err) =>{
         console.log(err);
     });
+    }
 });
