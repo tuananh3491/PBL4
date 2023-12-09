@@ -33,7 +33,7 @@ let button = form.submit.addEventListener("click", (e) => {
     }
     else {
     
-    const login = 'http://localhost:8080/api/user/login';
+    const login = 'http://192.168.175.118:8080/api/user/login';
     getData(login, [form.email.value, form.password.value]).then((data) => {
         if (data == null) {
             alert("Sai tài khoản hoặc mật khẩu!"); // Hiển thị thông báo lỗi

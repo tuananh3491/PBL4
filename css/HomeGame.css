@@ -143,6 +143,18 @@
     height: 500px;
     background-color: #9A49AA;
 }
+.main-container .game-main .room .list-room .room-child{
+    font-family: var(--font-family);
+    background-color: white;
+    color: black;
+    width: 40%;
+    margin: 10px;
+}
+.main-container .game-main .room .list-room .room-child .t-room{
+    margin: 0;
+    padding-left: 10px;
+    
+}
 .main-container .game-main .room .btn-inroom{
     position: fixed;
     right: 0;
