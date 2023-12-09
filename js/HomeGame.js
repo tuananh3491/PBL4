@@ -29,16 +29,28 @@ function toggleDropdown() {
 }
 
 function listRoom(){
-    getData("http://localhost:8080/rooms")
+    getData("http://192.168.175.118:8080/rooms")
     .then(data => {
         document.querySelector(".list-room").innerHTML = "";
         for (let [key, value] of Object.entries(data)) {
             // console.log(`Key: ${key}, Value: ${value}`);
             var div = document.createElement("div");
-            div.className = "";
-            var string = "<h3>name: "+ key +"</h3><br>"
-                        +"<p>number of player: "+ Object.keys(value.playersPoints).length +"</p> <br>"
-                        +"<p>room size:"+ value.number +"</p><br>"
+            div.className = "room-child";
+            if(value.number===2){
+                div.style.borderLeft="solid 7px #CF3943";
+                var string = "<p class='t-room'>Tên phòng: "+ key +"</p>"
+                            +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
+                            +"<p class='t-room'>Đấu thường (1 vs 1)</p>"             
+                            ;  
+            
+            }
+            else if(value.number===4){
+                div.style.borderLeft="solid 7px #F3AF56";
+                var string = "<p class='t-room'>Tên phòng: "+ key +"</p>"
+                            +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
+                            +"<p class='t-room'>Đấu hạng (one - for all)</p>" 
+                            ;            
+            }
             div.innerHTML = string;
             document.querySelector(".list-room").appendChild(div);
         }
@@ -91,7 +103,7 @@ let button = form.submit.addEventListener("click", (e) => {
     e.preventDefault;
     const playername = JSON.parse(localStorage.getItem('data'))['name'];
     form.number = document.querySelector('input[name="slot1"]:checked');
-    const create = 'http://localhost:8080/createRoom';
+    const create = 'http://192.168.175.118:8080/createRoom';
     localStorage.setItem("room", JSON.stringify({
         "name": document.querySelector("#name").value,
         "number": document.querySelector(".number-person").value

@@ -22,7 +22,7 @@ async function postData(url = "", data = {}) {
 let button = form.submit.addEventListener("click", (e) => {
     e.preventDefault();
     form.gender = document.querySelector('input[name="Gender"]:checked');
-    const login = 'http://localhost:8080/api/user';
+    const login = 'http://192.168.175.118:8080/api/user';
     postData(login, 
         {
             password: form.password.value,
