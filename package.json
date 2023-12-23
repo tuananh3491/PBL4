@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "ajax": "^0.0.4",
-    "jquery": "^3.7.1",
-    "sockjs": "^0.3.24"
+    "@stomp/stompjs": "^7.0.0"
   }
 }
