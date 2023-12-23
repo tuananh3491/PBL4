@@ -33,13 +33,13 @@ let button = form.submit.addEventListener("click", (e) => {
     }
     else {
     
-    const login = 'http://192.168.175.118:8080/api/user/login';
+    const login = 'http://localhost:8080/api/user/login';
     getData(login, [form.email.value, form.password.value]).then((data) => {
         if (data == null) {
             alert("Sai tài khoản hoặc mật khẩu!"); // Hiển thị thông báo lỗi
         } else {
             alert("Đăng nhập thành công");
-            localStorage.setItem('data', JSON.stringify(data));
+            sessionStorage.setItem('data', JSON.stringify(data));
             window.location.href = '../Html/HomeGame.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
         }
     }).catch((err) =>{

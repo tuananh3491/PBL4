@@ -29,30 +29,35 @@ function toggleDropdown() {
 }
 
 function listRoom(){
-    getData("http://192.168.175.118:8080/rooms")
+    getData("http://localhost:8080/rooms")
     .then(data => {
+        // console.log(data);
         document.querySelector(".list-room").innerHTML = "";
         for (let [key, value] of Object.entries(data)) {
             // console.log(`Key: ${key}, Value: ${value}`);
-            var div = document.createElement("div");
-            div.className = "room-child";
+            var _div = document.createElement("div");
+            _div.className = "room-child";
             if(value.number===2){
-                div.style.borderLeft="solid 7px #CF3943";
-                var string = "<p class='t-room'>Tên phòng: "+ key +"</p>"
+                _div.style.borderLeft="solid 7px #CF3943";
+                var string = "<p class='t-room'>Tên phòng: "+ value.name +"</p>"
                             +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
-                            +"<p class='t-room'>Đấu thường (1 vs 1)</p>"             
+                            +"<p class='t-room'>Đấu thường (1 vs 1)</p>"
+                            +"<p class='t-room'>"+key+"</p>"
                             ;  
-            
             }
             else if(value.number===4){
-                div.style.borderLeft="solid 7px #F3AF56";
-                var string = "<p class='t-room'>Tên phòng: "+ key +"</p>"
+                _div.style.borderLeft="solid 7px #F3AF56";
+                var string = "<p class='t-room'>Tên phòng: "+ value.name +"</p>"
                             +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
                             +"<p class='t-room'>Đấu hạng (one - for all)</p>" 
+                            +"<p class='t-room'>"+key+"</p>"
                             ;            
             }
-            div.innerHTML = string;
-            document.querySelector(".list-room").appendChild(div);
+            _div.innerHTML = string;
+            _div.onclick = function(){
+                select(value.name);
+            };
+            document.querySelector(".list-room").appendChild(_div);
         }
     });
     list.style.display = 'flex';
@@ -70,7 +75,7 @@ const profile = {
     gamePlayed: document.querySelector("#inp-played"),
     gameWon: document.querySelector("#inp-win")
 }
-let objdata = JSON.parse(localStorage.getItem('data'));
+let objdata = JSON.parse(sessionStorage.getItem('data'));
 
 if (objdata) {
     console.log(objdata);
@@ -101,22 +106,27 @@ const form = {
 
 let button = form.submit.addEventListener("click", (e) => {
     e.preventDefault;
-    const playername = JSON.parse(localStorage.getItem('data'))['name'];
+    const playername = JSON.parse(sessionStorage.getItem('data'))['name'];
     form.number = document.querySelector('input[name="slot1"]:checked');
-    const create = 'http://192.168.175.118:8080/createRoom';
-    localStorage.setItem("room", JSON.stringify({
-        "name": document.querySelector("#name").value,
-        "number": document.querySelector(".number-person").value
-    }));
+    const create = 'http://localhost:8080/createRoom';
     postData(create, {
         "name": document.querySelector("#name").value,
-        "playersPoints":
-        {
-            [playername]: 0.0
-        },
-        "number": parseInt(form.number.value)
+        "playersPoints": {},
+        "number": parseInt(form.number.value),
+        "host": playername
     })
     .then((data) => {
-        console.log(data);
+        sessionStorage.setItem("room", JSON.stringify(data.name));
+        // setTimeout(1000);
+        window.location.href = "../Html/Room.html";
+    })
+    .catch((err) => {
+        console.log(err);
     });
+    
 });
+
+function select(key){
+    sessionStorage.setItem("room", JSON.stringify(key));
+    window.location.href = "../Html/Room.html"
+}
