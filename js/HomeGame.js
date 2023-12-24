@@ -40,17 +40,15 @@ function listRoom(){
             if(value.number===2){
                 _div.style.borderLeft="solid 7px #CF3943";
                 var string = "<p class='t-room'>Tên phòng: "+ value.name +"</p>"
-                            +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
+                            +"<p class='t-room'><i class='fa-solid fa-user'></i> "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
                             +"<p class='t-room'>Đấu thường (1 vs 1)</p>"
-                            +"<p class='t-room'>"+key+"</p>"
                             ;  
             }
             else if(value.number===4){
                 _div.style.borderLeft="solid 7px #F3AF56";
                 var string = "<p class='t-room'>Tên phòng: "+ value.name +"</p>"
-                            +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
+                            +"<p class='t-room'><i class='fa-solid fa-user'></i> "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
                             +"<p class='t-room'>Đấu hạng (one - for all)</p>" 
-                            +"<p class='t-room'>"+key+"</p>"
                             ;            
             }
             _div.innerHTML = string;
