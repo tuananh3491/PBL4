@@ -6,6 +6,7 @@ var roomId = null;
 var topic = null;
 var inf_room = document.querySelector(".inf-room");
 var list_attend = document.querySelector(".list-attend");
+var exit_btn = document.querySelector(".exit-button");
 
 function connect(event) {
     username = JSON.parse(sessionStorage.getItem("data"))['name'];
@@ -17,6 +18,14 @@ function connect(event) {
       stompClient = Stomp.over(socket);
   
       stompClient.connect({}, onConnected, onError);
+    }
+    event.preventDefault();
+}
+
+function disconnect(event){
+    if(stompClient != null){
+        stompClient.disconnect();
+        window.location.href= "../Html/HomeGame.html"
     }
     event.preventDefault();
 }
@@ -60,7 +69,14 @@ function enterRoom(newRoomId) {
             div2.innerHTML = string2;
             list_attend.appendChild(div2);
         }
-
+        if(currentSubscription_quiz){
+            currentSubscription_quiz.unsubscribe();
+        }
+        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){});
+        if(currentSubscription_result){
+            currentSubscription_result.unsubscribe();
+        }
+        currentSubscription_result.subscribe(`/questions/${roomId}`, function(result){})
     });
   
     stompClient.send('/app/'+newRoomId+"/join",
@@ -70,4 +86,5 @@ function enterRoom(newRoomId) {
 }
 $(function() {
     window.addEventListener("load", connect);
+    exit_btn.addEventListener("click", disconnect);
 });
