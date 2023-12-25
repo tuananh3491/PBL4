@@ -112,3 +112,34 @@ $(function() {
     window.addEventListener("load", connect);
     exit_btn.addEventListener("click", disconnect);
 });
+// set countdown
+var countdownTime = 120*60; // for example, 60 seconds
+
+function updateCountdown() {
+  var countdownElement = document.getElementById('countdown');
+  countdownElement.innerHTML = formatTime(countdownTime);
+
+  if (countdownTime > 0) {
+    countdownTime--;
+    setTimeout(updateCountdown, 1000); // Update every second
+  } else {
+    countdownElement.innerHTML = "Đã hết thời gian!";
+  }
+}
+
+function formatTime(seconds) {
+  var minutes = Math.floor(seconds / 60);
+  var remainingSeconds = seconds % 60;
+
+  // Add leading zero if necessary
+  if (remainingSeconds < 10) {
+    remainingSeconds = "0" + remainingSeconds;
+  }
+
+  return minutes + ":" + remainingSeconds;
+}
+
+// Start the countdown
+updateCountdown();
+
+
