@@ -29,6 +29,8 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .main-container .custom-dropdown{
     position: absolute;
@@ -51,6 +53,7 @@
     cursor: pointer;
 }
 .main-container .list-attend{
+    display: none;
     width: 950px;
     height: 500px;
     background-color: #9A49AA;
@@ -60,15 +63,110 @@
 }
 
 .main-container .inf-room{
+    display: none;
     position: fixed;
     width: 200px;
-    height: 150px;
+    height: 125px;
     background-color: white;
     right: 40px;
     top: 10%;
 }
+.main-container .inf-room .t-room{
+    font-family: var(--font-family);
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+/* play */
+.list-questions {
+    display: flex;
+    flex-direction: column;
+    background-color: #9A49AA;
+    width: 80%;
+    min-height: auto;
+    font-family: var(--font-family);
+}
+
+.countdown-timer {
+    width: 100%; /* Chiều rộng 100% để nằm trên cùng */
+    height: 40px;
+    border: 3px solid white;
+    padding: 10px;
+}
+
+.question-choose-one {
+    margin-top: 10px; /* Khoảng cách giữa countdown-timer và question-choose-one */
+}
+
+.list-answers {
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(2, 1fr); /* Chia thành 2 cột */
+    grid-gap: 20px; /* Khoảng cách giữa các ô */
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 2);
+    border-radius: 4px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: .3s;
+    color: #fff;
+}
+
+.option:hover {
+    background: #fff;
+    border: #9A49AA solid 2px;
+    color: #9A49AA;
+}
+
+/* input answer */
+.inp-answers {
+    width: 80%;
+    margin: 5px;
+    margin-left: 90px;
+}
+
+.list-questions .button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.list-questions .button .btn-submit {
+    background-color: #655DCA;
+    padding-right: 10px;
+    margin-right: 40px;
+    width: 120px;
+    height: 40px;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.list-questions .button .btn-next {
+    padding-right: 10px;
+    margin-left: 40px;
+    background-color: #655DCA;
+    width: 120px;
+    height: 40px;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.list-questions .button .btn-next:hover {
+    background-color: #3166C7;
+}
+.list-questions .button .btn-submit:hover {
+    background-color: #3166C7;
+}
 
 .main-container .btn-exit{
+    display: none;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -86,6 +184,7 @@
 }
 
 .main-container .btn-ready{
+    display: none;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -98,5 +197,15 @@
     border: 5px solid #EF7426;
     font-size: 20px;
     font-family: var(--font-family);
+    color: white;
+}
+
+#inp-igame{
+    padding: 0;
+    background-color: none;
+    border: none;
+    text-align: center;
+    width: 100px;
+    background-color: #9A49AA;
     color: white;
 }
