@@ -96,7 +96,9 @@ function enterRoom(newRoomId) {
         if(currentSubscription_quiz){
             currentSubscription_quiz.unsubscribe();
         }
-        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){});
+        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
+            
+        });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
         }
