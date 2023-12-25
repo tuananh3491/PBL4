@@ -20,6 +20,19 @@ function connect(event) {
     }
     event.preventDefault();
 }
+const nameid = document.querySelector("#inp-igame");
+let objdata = JSON.parse(sessionStorage.getItem('data'));
+if (objdata) {
+    console.log(objdata);
+
+    if ('name' in objdata) {
+        nameid.value = objdata['name'];
+    }
+
+} else {
+    console.log('Data is null or undefined');
+}
+
 
 function onConnected() {
     enterRoom(JSON.parse(sessionStorage.getItem("room")));
@@ -47,11 +60,22 @@ function enterRoom(newRoomId) {
         list_attend.innerHTML = "";
         
         var div1 = document.createElement("div");
-        var string = "<p class='t-room'>Tên phòng: "+ data.name +"</p>"
+        if(data.number===2){
+            div1.style.borderLeft = "solid 7px #CF3943";
+            var string = "<p class='t-room'>Tên phòng: "+ data.name +"</p>"
                     +"<p class='t-room'>Số người chơi: "+ Object.keys(data.playersPoints).length +"/"+ data.number +"</p>"
                     +"<p class='t-room'>Đấu thường (1 vs 1)</p>"
-                    +"<p class='t-room'>"+data.host+"</p>"           
+                    +"<p class='t-room'>Chủ phòng: "+data.host+"</p>"           
                     ;
+                }
+        else{
+            div1.style.borderLeft = "solid 7px #F3AF56";
+            var string = "<p class='t-room'>Tên phòng: "+ data.name +"</p>"
+                    +"<p class='t-room'>Số người chơi: "+ Object.keys(data.playersPoints).length +"/"+ data.number +"</p>"
+                    +"<p class='t-room'>Đấu hạng (one - for all)</p>"
+                    +"<p class='t-room'>Chủ phòng: "+data.host+"</p>"           
+                    ;
+        }
         div1.innerHTML = string;
         inf_room.appendChild(div1);
         for (let [key, value] of Object.entries(data.playersPoints)){

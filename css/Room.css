@@ -60,12 +60,18 @@
 }
 
 .main-container .inf-room{
+    display: inline-block;
     position: fixed;
     width: 200px;
-    height: 150px;
+    height: 125px;
     background-color: white;
     right: 40px;
     top: 10%;
+}
+.main-container .inf-room .t-room{
+    font-family: var(--font-family);
+    margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .main-container .btn-exit{
@@ -98,5 +104,15 @@
     border: 5px solid #EF7426;
     font-size: 20px;
     font-family: var(--font-family);
+    color: white;
+}
+
+#inp-igame{
+    padding: 0;
+    background-color: none;
+    border: none;
+    text-align: center;
+    width: 100px;
+    background-color: #9A49AA;
     color: white;
 }
