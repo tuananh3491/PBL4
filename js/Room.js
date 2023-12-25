@@ -112,3 +112,5 @@ $(function() {
     window.addEventListener("load", connect);
     exit_btn.addEventListener("click", disconnect);
 });
+
+// Phần thi 
