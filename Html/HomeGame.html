@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="../css/HomeGame.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="../js/bootstrapjs/bootstrap.bundle.js"></script>
+    
 </head>
 <body>
     <div class="main-container">
         <div class="menu">
             <div class="navbar-header header">
-                <a href="../Html/TrangChu.html" class="btn-header logo-text">uQuizzes</a>
+                <a href="#" class="btn-header logo-text">uQuizzes</a>
             </div>
             <div class="btn-play">
                 <button type="button" class="btn btn-primary icon-button" onclick="createRoom()">
@@ -38,23 +39,64 @@
             </div>   
         </div>
         <div class="game-main">
-            <div class="Profile">
-                <div class="avatar">
+            <div class="main-profile">
+                <div class="Profile">
+                    <div class="avatar">
                     
-                </div>
-                <div class="name-igame">
-                    <input type="text" class="igame inp-name" disabled>
-                    <div class="match">
-                        <div style="display: flex;">
-                            <p>Số trận:</p>
-                            <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF;color:white; height: 25px;" disabled>
-                        </div>
-                        <div style="display: flex;">
-                            <p>Thắng:</p>
-                            <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;color: white; height: 25px;"disabled>
+                    </div>
+                    <div class="name-igame">
+                        <input type="text" class="igame inp-name" disabled>
+                        <div class="match">
+                            <div style="display: flex;">
+                                <p>Hạng:</p>
+                                <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF;color:white; height: 25px;" disabled>
+                            </div>
+                            <div style="display: flex;">
+                                <p>Thắng:</p>
+                                <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;color: white; height: 25px;"disabled>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <form class="profile-form">
+                    <div class="box-login">
+                        <div class="title-login">
+                            <h2>Thông tin</h2>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Họ tên</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="inp-user" type="text" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Mật khẩu</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="inp-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Email</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="inp-email" type="text" style="width: 250px;" readonly>
+                            </div>
+                        </div>
+                        <div class="inputGender">
+                            <p class="titlelogin" style="padding-right: 20px;">Giới tính:</p>
+                            <div class="user">
+                                <label for="" style="padding-right: 20px;">
+                                    <input type="radio" name="Gender" value="true"> Nam
+                                </label>
+                                <label for="">
+                                    <input type="radio" name="Gender" value="false"> Nữ
+                                </label>
+                            </div>
+                        </div>
+                        <div class="" style="padding: 10px;">
+                            <input class="btnLogin" id="inp-submit" type="button" value="Cập nhật">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="room">
                 <h2>Danh sách phòng</h2>
@@ -92,15 +134,18 @@
                 <input type="text" class="inp-name inp-igame" disabled>
             </button>
             <div class="dropdown-content">
-                <button class="account-button">
+                <button class="account-button" onclick="profile_func()">
                     <i class="fa-solid fa-gear"></i>
                     Cài đặt</button>
-                <a href="../Html/TrangChu.html" class="account-button" style="color: black; text-decoration: none;">
+                <div class="account-button" id="btn-logout" style="color: black; text-decoration: none;">
                     <i class="fa-solid fa-right-from-bracket "></i>
-                    Đăng xuất</a>
+                    Đăng xuất
+                </div>
             </div>
         </div>
     </div>
+    <script src="../js/jquery/jquery-3.7.1.min.js"></script>
     <script src="../js/HomeGame.js"></script>
+    <!-- <script src="../js/handleLogoutOnExitBrowser.js"></script> -->
 </body>
 </html>

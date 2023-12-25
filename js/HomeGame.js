@@ -1,6 +1,8 @@
-var _profile = document.querySelector(".Profile");
+var _profile = document.querySelector(".main-profile");
 var list = document.querySelector(".room");
 var create = document.querySelector(".create-room");
+var btn_logout = document.querySelector("#btn-logout");
+var profile_form = null;
 async function getData(url = "") {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -14,6 +16,19 @@ async function postData(url = "", data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
         method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        body: JSON.stringify(data)
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function putData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'PUT',
         headers: {
             "Content-Type": "application/json"
         },
@@ -70,6 +85,12 @@ function createRoom(){
     list.style.display = 'none';
 }
 
+function profile_func(){
+    create.style.display = 'none';
+    _profile.style.display = 'flex';
+    list.style.display = 'none';
+}
+
 const profile = {
     name: document.querySelectorAll(".inp-name"),
     gamePlayed: document.querySelector("#inp-played"),
@@ -78,16 +99,25 @@ const profile = {
 let objdata = JSON.parse(sessionStorage.getItem('data'));
 
 if (objdata) {
-    console.log(objdata);
+    // console.log(objdata);
 
     if ('name' in objdata) {
         profile.name[0].value = objdata['name'];
         profile.name[1].value = objdata['name'];
+        document.querySelector("#inp-user").value = objdata['name'];
+        document.querySelector("#inp-password").value = objdata['password'];
+        document.querySelector("#inp-email").value = objdata['username'];
+        let radioButton = document.querySelector(`input[type="radio"][name="Gender"][value="${objdata['gender']}"]`);
+
+        if (radioButton) {
+            radioButton.checked = true;
+        }
     }
 
     if (objdata["rank_statistic"]) {
         if ('gamePlayed' in objdata["rank_statistic"]) {
-            profile.gamePlayed.value = objdata["rank_statistic"]["gamePlayed"];
+            const rank_stat = objdata["rank_statistic"]["rank"] + "(" + objdata["rank_statistic"]["point"] + ")";
+            profile.gamePlayed.value = rank_stat;
         }
 
         if ('gameWon' in objdata["rank_statistic"]) {
@@ -103,6 +133,18 @@ const form = {
     number: null,
     submit: document.querySelector("#btn-create")
 }
+
+btn_logout.addEventListener("click", function(e){
+    e.preventDefault();
+    const obj = JSON.parse(sessionStorage.getItem("data"));
+    obj.status = false;
+    const logout = "http://localhost:8080/api/user/logout";
+    putData(logout, obj).catch(err => {
+        console.log(err);
+        sessionStorage.clear();
+    })
+    window.location.href = "../Html/Login.html";
+})
 
 let button = form.submit.addEventListener("click", (e) => {
     e.preventDefault;
@@ -130,3 +172,28 @@ function select(key){
     sessionStorage.setItem("room", JSON.stringify(key));
     window.location.href = "../Html/Room.html"
 }
+
+
+
+$(function(){
+    profile_form = {
+        user: document.querySelector("#inp-user"),
+        password: document.querySelector("#inp-password"),
+        email: document.querySelector("#inp-email"),
+        gender: document.querySelector('input[name="Gender"]:checked'),
+        submit: document.querySelector("#inp-submit")
+    }
+    document.querySelector("#inp-submit").addEventListener("click", e => {
+        e.preventDefault();
+        const obj = JSON.parse(sessionStorage.getItem('data'));
+        obj.name = profile_form.user.value;
+        obj.password = profile_form.password.value;
+        obj.username = profile_form.email.value;
+        obj.gender = document.querySelector('input[name="Gender"]:checked').value;
+        const path = "http://localhost:8080/api/user/"+ obj.iduser; 
+        putData(path, obj);
+        sessionStorage.setItem("data", JSON.stringify(obj));
+        location.reload();
+    })
+    
+})

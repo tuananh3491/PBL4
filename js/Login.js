@@ -15,9 +15,9 @@ async function getData(url = "", data = []) {
         mode: "cors",
         body: JSON.stringify(data)
     });
-    console.log(response);
-    if (response.status === 200) return response.json();
-    else return null;
+    const jsonData = await response.json();
+    console.log(response.status);
+    return {status: response.status, body: jsonData};
      // parses JSON response into native JavaScript objects
 }
 
@@ -34,15 +34,20 @@ let button = form.submit.addEventListener("click", (e) => {
     else {
     
     const login = 'http://localhost:8080/api/user/login';
-    getData(login, [form.email.value, form.password.value]).then((data) => {
-        if (data == null) {
-            alert("Sai tài khoản hoặc mật khẩu!"); // Hiển thị thông báo lỗi
-        } else {
+    getData(login, [form.email.value, form.password.value])
+    .then(obj => {
+        console.log(obj.status);
+        if(obj.status == 200){
             alert("Đăng nhập thành công");
-            sessionStorage.setItem('data', JSON.stringify(data));
-            window.location.href = '../Html/HomeGame.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
+            sessionStorage.setItem('data', JSON.stringify(obj.body));
+            // console.log(sessionStorage.getItem("data"));
+            window.location.href = "../Html/HomeGame.html"; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
         }
-    }).catch((err) =>{
+        else {
+            alert("thử nghiệm");
+        }
+    })
+    .catch((err) =>{
         console.log(err);
     });
     }

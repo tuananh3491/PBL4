@@ -59,24 +59,26 @@ function enterRoom(newRoomId) {
         var string = "<p class='t-room'>Tên phòng: "+ data.name +"</p>"
                     +"<p class='t-room'>Số người chơi: "+ Object.keys(data.playersPoints).length +"/"+ data.number +"</p>"
                     +"<p class='t-room'>Đấu thường (1 vs 1)</p>"
-                    +"<p class='t-room'>"+data.host+"</p>"           
+                    +"<p class='t-room'>"+ data.host +"</p>"           
                     ;
         div1.innerHTML = string;
         inf_room.appendChild(div1);
         for (let [key, value] of Object.entries(data.playersPoints)){
             var div2 = document.createElement("div");
-            var string2 = "<p class='t-room'>" +  key +"</p>";
+            var string2 = "<p class='t-room'>" + key +"</p>";
             div2.innerHTML = string2;
             list_attend.appendChild(div2);
         }
         if(currentSubscription_quiz){
             currentSubscription_quiz.unsubscribe();
         }
-        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){});
+        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
+
+        });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
         }
-        currentSubscription_result.subscribe(`/questions/${roomId}`, function(result){})
+        currentSubscription_result.subscribe(`/result/${roomId}`, function(result){})
     });
   
     stompClient.send('/app/'+newRoomId+"/join",
