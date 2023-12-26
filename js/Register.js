@@ -84,7 +84,9 @@ btnConfirmToken.addEventListener('click', function() {
             password: form.password.value,
             name: form.user.value,
             username: form.email.value,
-            gender: form.gender.value       
+            gender: form.gender.value,
+            role: 0,
+            status: 1       
         }
     ).then((data) => {
         if (data == null) {

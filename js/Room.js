@@ -98,29 +98,30 @@ function enterRoom(newRoomId) {
         if(currentSubscription_quiz){
             currentSubscription_quiz.unsubscribe();
         }
-        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
-            // for (let i = 0; i < quizzes.length; i++) {
-            //     let question = {
-            //         numb: i + 1,
-            //         picture: quizzes[i].picture,
-            //         subject: quizzes[i].subject,
-            //         difficulty: quizzes[i].difficulty,
-            //         timeAnswered: quizzes[i].timeAnswered,
-            //         type: determineType(quizzes[i]),
-            //         question: quizzes[i].quizz_info,
-            //         answer: extractAnswer(quizzes[i]),
-            //         options: determineOptions(quizzes[i])
-            //     };
-            //     questions.push(question);
-            // }
+        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(_quizzes){
+            var quizzes = JSON.parse(_quizzes.body);
+            for (let i = 0; i < quizzes.length; i++) {
+                let question = {
+                    numb: i + 1,
+                    picture: quizzes[i].picture,
+                    subject: quizzes[i].subject,
+                    difficulty: quizzes[i].difficulty,
+                    timeAnswered: quizzes[i].timeAnswered,
+                    type: determineType(quizzes[i]),
+                    question: quizzes[i].quizz_info,
+                    answer: extractAnswer(quizzes[i]),
+                    options: determineOptions(quizzes[i])
+                };
+                questions.push(question);
+            }
             console.log("Nè");
-            // console.log(questions);
-            // inf_room.style.display = "none";
-            // list_attend.style.display = "none";
-            // main.style.justifyContent = "center";
-            // main.style.alignItems = "center";
-            // list_questions.style.display = "flex";
-
+            console.log(questions);
+            inf_room.style.display = "none";
+            list_attend.style.display = "none";
+            main.style.justifyContent = "center";
+            main.style.alignItems = "center";
+            list_questions.style.display = "flex";
+            showQuestions(0);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
@@ -133,10 +134,7 @@ function enterRoom(newRoomId) {
         JSON.parse(sessionStorage.getItem('data')).name
     );
 }
-$(function() {
-    window.addEventListener("load", connect);
-    exit_btn.addEventListener("click", disconnect);
-});
+
 // set countdown
 var countdownTime = 120*60; // for example, 60 seconds
 
@@ -407,4 +405,9 @@ submitButton.addEventListener('click', function() {
                 contentDiv.classList.add('incorrect');
         }
     }
+});
+
+$(function() {
+    window.addEventListener("load", connect);
+    exit_btn.addEventListener("click", disconnect);
 });
