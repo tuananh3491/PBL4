@@ -99,34 +99,33 @@ function enterRoom(newRoomId) {
             currentSubscription_quiz.unsubscribe();
         }
         currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
-            for (let i = 0; i < quizzes.length; i++) {
-                let question = {
-                    numb: i + 1,
-                    picture: quizzes[i].picture,
-                    subject: quizzes[i].subject,
-                    difficulty: quizzes[i].difficulty,
-                    timeAnswered: quizzes[i].timeAnswered,
-                    type: determineType(quizzes[i]),
-                    question: quizzes[i].quizz_info,
-                    answer: extractAnswer(quizzes[i]),
-                    options: determineOptions(quizzes[i])
-                };
-                questions.push(question);
-            }
+            // for (let i = 0; i < quizzes.length; i++) {
+            //     let question = {
+            //         numb: i + 1,
+            //         picture: quizzes[i].picture,
+            //         subject: quizzes[i].subject,
+            //         difficulty: quizzes[i].difficulty,
+            //         timeAnswered: quizzes[i].timeAnswered,
+            //         type: determineType(quizzes[i]),
+            //         question: quizzes[i].quizz_info,
+            //         answer: extractAnswer(quizzes[i]),
+            //         options: determineOptions(quizzes[i])
+            //     };
+            //     questions.push(question);
+            // }
             console.log("Nè");
-            console.log(questions);
-            inf_room.style.display = "none";
-            list_attend.style.display = "none";
-            main.style.justifyContent = "center";
-            main.style.alignItems = "center";
-            list_questions.style.display = "flex";
-
+            // console.log(questions);
+            // inf_room.style.display = "none";
+            // list_attend.style.display = "none";
+            // main.style.justifyContent = "center";
+            // main.style.alignItems = "center";
+            // list_questions.style.display = "flex";
 
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
         }
-        currentSubscription_result.subscribe(`/result/${roomId}`, function(result){})
+        currentSubscription_result = stompClient.subscribe(`/result/${roomId}`, function(result){})
     });
   
     stompClient.send('/app/'+newRoomId+"/join",

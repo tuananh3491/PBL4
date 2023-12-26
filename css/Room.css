@@ -196,7 +196,7 @@
 }
 
 .main-container .btn-exit{
-    display: none;
+    display: flex;
     position: fixed;
     left: 0;
     bottom: 0;
