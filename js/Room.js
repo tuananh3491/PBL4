@@ -7,6 +7,8 @@ var topic = null;
 var inf_room = document.querySelector(".inf-room");
 var list_attend = document.querySelector(".list-attend");
 var exit_btn = document.querySelector(".exit-button");
+var list_questions = document.querySelector(".list-questions");
+var main = document.querySelector(".main-container");
 
 function connect(event) {
     username = JSON.parse(sessionStorage.getItem("data"))['name'];
@@ -113,6 +115,13 @@ function enterRoom(newRoomId) {
             }
             console.log("Nè");
             console.log(questions);
+            inf_room.style.display = "none";
+            list_attend.style.display = "none";
+            main.style.justifyContent = "center";
+            main.style.alignItems = "center";
+            list_questions.style.display = "flex";
+
+
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
@@ -253,7 +262,7 @@ let questionCount = 0;
 // let questionNumb = 1;
 let userScore = 0;
 
-showQuestions(0);
+// showQuestions(0);
 
 nextBtn.onclick = () => {
     if (questionCount < questions.length - 1) {
