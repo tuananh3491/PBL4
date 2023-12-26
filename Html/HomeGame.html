@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="../css/Bootstrapcss/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/HomeGame.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="../js/bootstrapjs/bootstrap.bundle.js"></script>
     
 </head>
@@ -32,7 +31,7 @@
                     <i class="fa-solid fa-feather iconbtn"></i>
                     Luyện tập
                 </button>
-                <button type="button" class=" button-menu" >
+                <button type="button" class=" button-menu"onclick="listRanked()" >
                     <i class="fas fa-trophy iconbtn"></i>
                     Xếp hạng
                 </button>
@@ -42,14 +41,14 @@
             <div class="main-profile">
                 <div class="Profile">
                     <div class="avatar">
-                    
+                        <img src="../picture/avatar.jpg" alt="">
                     </div>
                     <div class="name-igame">
                         <input type="text" class="igame inp-name" disabled>
                         <div class="match">
                             <div style="display: flex;">
-                                <p>Hạng:</p>
-                                <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF;color:white; height: 25px;" disabled>
+                                <p style="margin-bottom: 5px; margin-top: 5px;">Hạng:</p>
+                                <input type="text" id="inp-played" style="border: none;margin-top: 5px; background-color: #0BC2CF;color:white; height: 25px;" disabled>
                             </div>
                             <div style="display: flex;">
                                 <p>Thắng:</p>
@@ -127,6 +126,40 @@
                     </div>
                     <button class="btn-create" id="btn-create">Tạo phòng</button>
                 <!-- </form> -->
+            </div>
+            <div class="ranked-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Xếp hạng</th>
+                            <th>Tên</th>
+                            <th>Điểm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Anh</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Anh</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Anh</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Anh</td>
+                            <td>1000</td>
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="custom-dropdown">

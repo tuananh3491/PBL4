@@ -2,6 +2,7 @@ var _profile = document.querySelector(".main-profile");
 var list = document.querySelector(".room");
 var create = document.querySelector(".create-room");
 var btn_logout = document.querySelector("#btn-logout");
+var viewRank = document.querySelector(".ranked-list");
 var profile_form = null;
 async function getData(url = "") {
     // Default options are marked with *
@@ -55,17 +56,15 @@ function listRoom(){
             if(value.number===2){
                 _div.style.borderLeft="solid 7px #CF3943";
                 var string = "<p class='t-room'>Tên phòng: "+ value.name +"</p>"
-                            +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
+                            +"<p class='t-room'><i class='fa-solid fa-user'></i> "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
                             +"<p class='t-room'>Đấu thường (1 vs 1)</p>"
-                            +"<p class='t-room'>"+key+"</p>"
                             ;  
             }
             else if(value.number===4){
                 _div.style.borderLeft="solid 7px #F3AF56";
                 var string = "<p class='t-room'>Tên phòng: "+ value.name +"</p>"
-                            +"<p class='t-room'>Số người chơi: "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
+                            +"<p class='t-room'><i class='fa-solid fa-user'></i> "+ Object.keys(value.playersPoints).length +"/"+ value.number +"</p>"
                             +"<p class='t-room'>Đấu hạng (one - for all)</p>" 
-                            +"<p class='t-room'>"+key+"</p>"
                             ;            
             }
             _div.innerHTML = string;
@@ -78,17 +77,26 @@ function listRoom(){
     list.style.display = 'flex';
     create.style.display = 'none';
     _profile.style.display = 'none';
+    viewRank.style.display = 'none';
 }
 function createRoom(){
     create.style.display = 'flex';
     _profile.style.display = 'none';
     list.style.display = 'none';
+    viewRank.style.display = 'none';
 }
 
 function profile_func(){
     create.style.display = 'none';
     _profile.style.display = 'flex';
     list.style.display = 'none';
+    viewRank.style.display = 'none';
+}
+function listRanked(){
+    create.style.display = 'none';
+    _profile.style.display = 'none';
+    list.style.display = 'none';
+    viewRank.style.display = 'flex';
 }
 
 const profile = {
