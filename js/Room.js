@@ -74,7 +74,7 @@ function enterRoom(newRoomId) {
             var string = "<p class='t-room'>Tên phòng: "+ data.name +"</p>"
                     +"<p class='t-room'>Số người chơi: "+ Object.keys(data.playersPoints).length +"/"+ data.number +"</p>"
                     +"<p class='t-room'>Đấu thường (1 vs 1)</p>"
-                    +"<p class='t-room'>Chủ phòng: "+data.host+"</p>"           
+                    +"<p class='t-room'>"+ data.host +"</p>"           
                     ;
                 }
         else{
@@ -89,7 +89,7 @@ function enterRoom(newRoomId) {
         inf_room.appendChild(div1);
         for (let [key, value] of Object.entries(data.playersPoints)){
             var div2 = document.createElement("div");
-            var string2 = "<p class='t-room'>" +  key +"</p>";
+            var string2 = "<p class='t-room'>" + key +"</p>";
             div2.innerHTML = string2;
             list_attend.appendChild(div2);
         }
@@ -97,27 +97,28 @@ function enterRoom(newRoomId) {
             currentSubscription_quiz.unsubscribe();
         }
         currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
-            // for (let i = 0; i < quizzes.length; i++) {
-            //     let question = {
-            //         numb: i + 1,
-            //         picture: quizzes[i].picture,
-            //         subject: quizzes[i].subject,
-            //         difficulty: quizzes[i].difficulty,
-            //         timeAnswered: quizzes[i].timeAnswered,
-            //         type: determineType(quizzes[i]),
-            //         question: quizzes[i].quizz_info,
-            //         answer: extractAnswer(quizzes[i]),
-            //         options: determineOptions(quizzes[i])
-            //     };
-            //     questions.push(question);
-            // }
-            // console.log("Nè");
-            // console.log(questions);
+            for (let i = 0; i < quizzes.length; i++) {
+                let question = {
+                    numb: i + 1,
+                    picture: quizzes[i].picture,
+                    subject: quizzes[i].subject,
+                    difficulty: quizzes[i].difficulty,
+                    timeAnswered: quizzes[i].timeAnswered,
+                    type: determineType(quizzes[i]),
+                    question: quizzes[i].quizz_info,
+                    answer: extractAnswer(quizzes[i]),
+                    options: determineOptions(quizzes[i])
+                };
+                questions.push(question);
+            }
+            console.log("Nè");
+            console.log(questions);
+            // showQuestions(0);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
         }
-        currentSubscription_result.subscribe(`/questions/${roomId}`, function(result){})
+        currentSubscription_result.subscribe(`/result/${roomId}`, function(result){})
     });
   
     stompClient.send('/app/'+newRoomId+"/join",
@@ -193,56 +194,56 @@ function determineOptions(quizz) {
     return null;
 }
 // Phần thi 
-let questions = [
-    {
-        numb: 1,
-        type: "choose_1",
-        question: "What does HTML stand for?",
-        answer: "C. Hyper Text Markup Language",
-        options: [
-            "A. Hyper Type Multi Language",
-            "B. Hyper Text Multiple Language",
-            "C. Hyper Text Markup Language",
-            "D. Home Text Multi Language"
-        ]
-    },
-    {
-        numb: 2,
-        type: "choose_n",
-        question: "What does CSS stand fordsadasdasdasdasdasdadadadad?",
-        answer: [
-            "T",
-            "T",
-            "F",
-            "F"
-        ],
-        options: [
-            "A. Cascading Style Sheet",
-            "B. Cute Style Sheet",
-            "C. Computer Style Sheet",
-            "D. Codehal Style Sheet",
-            "E. Codehal Style Sheet"
-        ]
-    },
-    {
-        numb: 3,
-        type: "a",
-        question: "What does PHP stand for?",
-        answer: "hello",
-    },
-    {
-        numb: 4,
-        type: "choose_1",
-        question: "What does SQL stand for?",
-        answer: "D. Structured Query Language",
-        options: [
-            "A. Strength Query Language",
-            "B. Stylesheet Query Language",
-            "C. Science Question Language",
-            "D. Structured Query Language"
-        ]
-    },
-];
+// let questions = [
+//     {
+//         numb: 1,
+//         type: "choose_1",
+//         question: "What does HTML stand for?",
+//         answer: "C. Hyper Text Markup Language",
+//         options: [
+//             "A. Hyper Type Multi Language",
+//             "B. Hyper Text Multiple Language",
+//             "C. Hyper Text Markup Language",
+//             "D. Home Text Multi Language"
+//         ]
+//     },
+//     {
+//         numb: 2,
+//         type: "choose_n",
+//         question: "What does CSS stand fordsadasdasdasdasdasdadadadad?",
+//         answer: [
+//             "T",
+//             "T",
+//             "F",
+//             "F"
+//         ],
+//         options: [
+//             "A. Cascading Style Sheet",
+//             "B. Cute Style Sheet",
+//             "C. Computer Style Sheet",
+//             "D. Codehal Style Sheet",
+//             "E. Codehal Style Sheet"
+//         ]
+//     },
+//     {
+//         numb: 3,
+//         type: "a",
+//         question: "What does PHP stand for?",
+//         answer: "hello",
+//     },
+//     {
+//         numb: 4,
+//         type: "choose_1",
+//         question: "What does SQL stand for?",
+//         answer: "D. Structured Query Language",
+//         options: [
+//             "A. Strength Query Language",
+//             "B. Stylesheet Query Language",
+//             "C. Science Question Language",
+//             "D. Structured Query Language"
+//         ]
+//     },
+// ];
 
 const optionList = document.querySelector('.optionList');
 const nextBtn = document.querySelector('.btn-next');
@@ -253,7 +254,7 @@ let questionCount = 0;
 // let questionNumb = 1;
 let userScore = 0;
 
-showQuestions(0);
+// showQuestions(0);
 
 nextBtn.onclick = () => {
     if (questionCount < questions.length - 1) {
