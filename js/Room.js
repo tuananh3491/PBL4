@@ -7,6 +7,8 @@ var topic = null;
 var inf_room = document.querySelector(".inf-room");
 var list_attend = document.querySelector(".list-attend");
 var exit_btn = document.querySelector(".exit-button");
+var list_questions = document.querySelector(".list-questions");
+var main = document.querySelector(".main-container");
 
 function connect(event) {
     username = JSON.parse(sessionStorage.getItem("data"))['name'];
@@ -26,7 +28,7 @@ let objdata = JSON.parse(sessionStorage.getItem('data'));
 if (objdata) {
     console.log(objdata);
 
-    if ('name' in objdata) {
+    if (objdata['name']) {
         nameid.value = objdata['name'];
     }
 
@@ -53,7 +55,7 @@ function onError(error) {
     // connectingElement.style.color = 'red';
     console.log(error)
 }
-// let questions = [];
+let questions = [];
 function enterRoom(newRoomId) {
     roomId = newRoomId;
     // Cookies.set('roomId', roomId);
@@ -96,7 +98,8 @@ function enterRoom(newRoomId) {
         if(currentSubscription_quiz){
             currentSubscription_quiz.unsubscribe();
         }
-        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
+        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(_quizzes){
+            var quizzes = JSON.parse(_quizzes.body);
             for (let i = 0; i < quizzes.length; i++) {
                 let question = {
                     numb: i + 1,
@@ -113,7 +116,12 @@ function enterRoom(newRoomId) {
             }
             console.log("Nè");
             console.log(questions);
-            // showQuestions(0);
+            inf_room.style.display = "none";
+            list_attend.style.display = "none";
+            main.style.justifyContent = "center";
+            main.style.alignItems = "center";
+            list_questions.style.display = "flex";
+            showQuestions(0);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
