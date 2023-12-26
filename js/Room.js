@@ -121,12 +121,12 @@ function enterRoom(newRoomId) {
             main.style.alignItems = "center";
             list_questions.style.display = "flex";
 
-
+            showQuestions(0);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
         }
-        currentSubscription_result.subscribe(`/result/${roomId}`, function(result){})
+        currentSubscription_result = stompClient.subscribe(`/result/${roomId}`, function(result){})
     });
   
     stompClient.send('/app/'+newRoomId+"/join",
@@ -134,10 +134,7 @@ function enterRoom(newRoomId) {
         JSON.parse(sessionStorage.getItem('data')).name
     );
 }
-$(function() {
-    window.addEventListener("load", connect);
-    exit_btn.addEventListener("click", disconnect);
-});
+
 // set countdown
 var countdownTime = 120*60; // for example, 60 seconds
 
@@ -408,4 +405,9 @@ submitButton.addEventListener('click', function() {
                 contentDiv.classList.add('incorrect');
         }
     }
+});
+
+$(function() {
+    window.addEventListener("load", connect);
+    exit_btn.addEventListener("click", disconnect);
 });
