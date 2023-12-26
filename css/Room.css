@@ -29,8 +29,8 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 .main-container .custom-dropdown{
     position: absolute;
@@ -53,7 +53,7 @@
     cursor: pointer;
 }
 .main-container .list-attend{
-    display: none;
+    display: flex;
     width: 950px;
     height: 500px;
     background-color: #9A49AA;
@@ -63,7 +63,7 @@
 }
 
 .main-container .inf-room{
-    display: none;
+    display: flex;
     position: fixed;
     width: 200px;
     height: 125px;
@@ -78,7 +78,7 @@
 }
 /* play */
 .list-questions {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: white;
     width: 80%;
@@ -122,20 +122,46 @@
     transition: .3s;
     color: black;
 }
-
+.option.choose{
+    background: #fff;
+    border: #3166C7 solid 4px;
+    color: #3166C7;
+}
 .option:hover {
     background: #fff;
     border: #3166C7 solid 4px;
     color: #3166C7;
 }
+.option.correct {
+    background:  #7cd39c;
+    color: #00a63d;
+    border-color: #00a63d;
+}
+.option.incorrect {
+    background: #d496b0;
+    color: #a60045;
+    border-color: #a60045;
+}
 
 /* input answer */
+.optionList{
+    width: 100%;
+}
 .inp-answers {
     width: 80%;
     margin: 5px;
     margin-left: 90px;
 }
-
+.inp-answers.correct {
+    background:  #7cd39c;
+    color: #00a63d;
+    border-color: #00a63d;
+}
+.inp-answers.incorrect {
+    background: #d496b0;
+    color: #a60045;
+    border-color: #a60045;
+}
 .list-questions .button{
     display: flex;
     justify-content: center;
