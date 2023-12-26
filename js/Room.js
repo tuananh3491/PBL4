@@ -53,7 +53,7 @@ function onError(error) {
     // connectingElement.style.color = 'red';
     console.log(error)
 }
-let questions = [];
+// let questions = [];
 function enterRoom(newRoomId) {
     roomId = newRoomId;
     // Cookies.set('roomId', roomId);
@@ -97,22 +97,22 @@ function enterRoom(newRoomId) {
             currentSubscription_quiz.unsubscribe();
         }
         currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
-            for (let i = 0; i < quizzes.length; i++) {
-                let question = {
-                    numb: i + 1,
-                    picture: quizzes[i].picture,
-                    subject: quizzes[i].subject,
-                    difficulty: quizzes[i].difficulty,
-                    timeAnswered: quizzes[i].timeAnswered,
-                    type: determineType(quizzes[i]),
-                    question: quizzes[i].quizz_info,
-                    answer: extractAnswer(quizzes[i]),
-                    options: determineOptions(quizzes[i])
-                };
-                questions.push(question);
-            }
-            console.log("Nè");
-            console.log(questions);
+            // for (let i = 0; i < quizzes.length; i++) {
+            //     let question = {
+            //         numb: i + 1,
+            //         picture: quizzes[i].picture,
+            //         subject: quizzes[i].subject,
+            //         difficulty: quizzes[i].difficulty,
+            //         timeAnswered: quizzes[i].timeAnswered,
+            //         type: determineType(quizzes[i]),
+            //         question: quizzes[i].quizz_info,
+            //         answer: extractAnswer(quizzes[i]),
+            //         options: determineOptions(quizzes[i])
+            //     };
+            //     questions.push(question);
+            // }
+            // console.log("Nè");
+            // console.log(questions);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
@@ -193,56 +193,56 @@ function determineOptions(quizz) {
     return null;
 }
 // Phần thi 
-// let questions = [
-//     {
-//         numb: 1,
-//         type: "choose_1",
-//         question: "What does HTML stand for?",
-//         answer: "C. Hyper Text Markup Language",
-//         options: [
-//             "A. Hyper Type Multi Language",
-//             "B. Hyper Text Multiple Language",
-//             "C. Hyper Text Markup Language",
-//             "D. Home Text Multi Language"
-//         ]
-//     },
-//     {
-//         numb: 2,
-//         type: "choose_n",
-//         question: "What does CSS stand fordsadasdasdasdasdasdadadadad?",
-//         answer: [
-//             "T",
-//             "T",
-//             "F",
-//             "F"
-//         ],
-//         options: [
-//             "A. Cascading Style Sheet",
-//             "B. Cute Style Sheet",
-//             "C. Computer Style Sheet",
-//             "D. Codehal Style Sheet",
-//             "E. Codehal Style Sheet"
-//         ]
-//     },
-//     {
-//         numb: 3,
-//         type: "a",
-//         question: "What does PHP stand for?",
-//         answer: "hello",
-//     },
-//     {
-//         numb: 4,
-//         type: "choose_1",
-//         question: "What does SQL stand for?",
-//         answer: "D. Structured Query Language",
-//         options: [
-//             "A. Strength Query Language",
-//             "B. Stylesheet Query Language",
-//             "C. Science Question Language",
-//             "D. Structured Query Language"
-//         ]
-//     },
-// ];
+let questions = [
+    {
+        numb: 1,
+        type: "choose_1",
+        question: "What does HTML stand for?",
+        answer: "C. Hyper Text Markup Language",
+        options: [
+            "A. Hyper Type Multi Language",
+            "B. Hyper Text Multiple Language",
+            "C. Hyper Text Markup Language",
+            "D. Home Text Multi Language"
+        ]
+    },
+    {
+        numb: 2,
+        type: "choose_n",
+        question: "What does CSS stand fordsadasdasdasdasdasdadadadad?",
+        answer: [
+            "T",
+            "T",
+            "F",
+            "F"
+        ],
+        options: [
+            "A. Cascading Style Sheet",
+            "B. Cute Style Sheet",
+            "C. Computer Style Sheet",
+            "D. Codehal Style Sheet",
+            "E. Codehal Style Sheet"
+        ]
+    },
+    {
+        numb: 3,
+        type: "a",
+        question: "What does PHP stand for?",
+        answer: "hello",
+    },
+    {
+        numb: 4,
+        type: "choose_1",
+        question: "What does SQL stand for?",
+        answer: "D. Structured Query Language",
+        options: [
+            "A. Strength Query Language",
+            "B. Stylesheet Query Language",
+            "C. Science Question Language",
+            "D. Structured Query Language"
+        ]
+    },
+];
 
 const optionList = document.querySelector('.optionList');
 const nextBtn = document.querySelector('.btn-next');
