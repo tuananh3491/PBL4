@@ -141,8 +141,8 @@
 .main-container .box-login{
     position: absolute;
     right: 30%;
-    top: 12%;
-    width: 410px;
+    top: 20%;
+    width: 360px;
     height: 470px;
     background-color: white;
     border-radius: 20px;
@@ -274,7 +274,37 @@
 }
 
 /* xếp hạng */
+.main-container .ranked-list{
+    display: none;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    flex-direction: column;
+    width: 670px;
+    background-color: #9A49AA;
+    align-items: center;
+    border-radius: 10px;
+}
 
+table {
+    border-collapse: collapse;
+    width: 600px; /* Set the width of the table */
+    margin: 20px; /* Add margin for spacing */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2; /* Background color for header */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
 
 
 /* nút bên phải*/
