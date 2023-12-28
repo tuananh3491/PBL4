@@ -92,7 +92,28 @@ function profile_func(){
     list.style.display = 'none';
     viewRank.style.display = 'none';
 }
+// bảng xếp hạng 
+var list_Ranked = document.querySelector(".list-R");
 function listRanked(){
+    getData("http://127.0.0.1:8080/api/user/rank").then((data) => {
+        // console.log(data);
+        var rankContent = document.querySelector("tbody");
+        rankContent.innerHTML = "";
+        for (var i = 0; i < data.length; i++) {
+          
+            var newRow = document.createElement("tr");
+            var cellRank = document.createElement("td");
+            var cellName = document.createElement("td");
+            var cellScore = document.createElement("td");
+            cellRank.innerHTML = i+1;
+            cellName.innerHTML = data[i].name;
+            cellScore.innerHTML = data[i].rank_statistic.point;
+            newRow.appendChild(cellRank);
+            newRow.appendChild(cellName);
+            newRow.appendChild(cellScore);
+            rankContent.appendChild(newRow);
+        }
+    });
     create.style.display = 'none';
     _profile.style.display = 'none';
     list.style.display = 'none';
@@ -124,7 +145,7 @@ if (objdata) {
 
     if (objdata["rank_statistic"]) {
         if ('gamePlayed' in objdata["rank_statistic"]) {
-            const rank_stat = objdata["rank_statistic"]["rank"] + "(" + objdata["rank_statistic"]["point"] + ")";
+            const rank_stat = objdata["rank_statistic"]["rank"] + " (" + objdata["rank_statistic"]["point"] + ")";
             profile.gamePlayed.value = rank_stat;
         }
 
@@ -134,6 +155,10 @@ if (objdata) {
     }
 } else {
     console.log('Data is null or undefined');
+}
+
+function rating(){
+    
 }
 
 const form = {
