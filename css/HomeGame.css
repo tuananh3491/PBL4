@@ -143,7 +143,7 @@
     right: 30%;
     top: 20%;
     width: 360px;
-    height: 470px;
+    height: 390px;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -160,10 +160,10 @@
 .titlelogin{
     margin: 0%;
 }
-.main-container .box-login .inputregister{
+.inputregister{
     padding-top: 10px;
 }
-.main-container .box-login .btnLogin{
+.btnLogin{
     display: inline-block;
     width: 200px;
     height: 60px;
@@ -189,6 +189,22 @@
     justify-content: initial;
     flex-direction: row;
 }
+/* change-password */
+.main-container .box-change-password{
+    position: absolute;
+    right: 30%;
+    top: 20%;
+    width: 360px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    font-family: var(--font-family);
+    color: #5F5F5F;
+}
+
 
 /* list room */
 .main-container .game-main .room{

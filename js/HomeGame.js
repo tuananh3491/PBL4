@@ -3,6 +3,8 @@ var list = document.querySelector(".room");
 var create = document.querySelector(".create-room");
 var btn_logout = document.querySelector("#btn-logout");
 var viewRank = document.querySelector(".ranked-list");
+var boxlogin = document.querySelector(".box-login");
+var boxchange = document.querySelector(".box-change-password");
 var profile_form = null;
 async function getData(url = "") {
     // Default options are marked with *
@@ -89,6 +91,8 @@ function createRoom(){
 function profile_func(){
     create.style.display = 'none';
     _profile.style.display = 'flex';
+    boxchange.style.display = 'none';
+    boxlogin.style.display = 'flex';
     list.style.display = 'none';
     viewRank.style.display = 'none';
 }
@@ -134,7 +138,6 @@ if (objdata) {
         profile.name[0].value = objdata['name'];
         profile.name[1].value = objdata['name'];
         document.querySelector("#inp-user").value = objdata['name'];
-        document.querySelector("#inp-password").value = objdata['password'];
         document.querySelector("#inp-email").value = objdata['username'];
         let radioButton = document.querySelector(`input[type="radio"][name="Gender"][value="${objdata['gender']}"]`);
 
@@ -205,13 +208,33 @@ function select(key){
     sessionStorage.setItem("room", JSON.stringify(key));
     window.location.href = "../Html/Room.html"
 }
-
+// change password
+function change_password(){
+    create.style.display = 'none';
+    boxchange.style.display = 'flex';
+    boxlogin.style.display = 'none';
+    _profile.style.display = 'flex';
+    list.style.display = 'none';
+}
+document.querySelector("#submit-change").addEventListener("click", e => {
+    e.preventDefault();
+    const obj = JSON.parse(sessionStorage.getItem('data'));
+    if(document.querySelector("#new-password").value==document.querySelector("#confirm-password").value){
+        obj.password = document.querySelector("#new-password").value;
+        const path = "http://localhost:8080/api/user/"+ obj.iduser;
+        putData(path, obj);
+        sessionStorage.setItem("data", JSON.stringify(obj));
+        location.reload();
+    }
+    else{
+        alert ("Mật khẩu không trùng nhau");
+    }
+})
 
 
 $(function(){
     profile_form = {
         user: document.querySelector("#inp-user"),
-        password: document.querySelector("#inp-password"),
         email: document.querySelector("#inp-email"),
         gender: document.querySelector('input[name="Gender"]:checked'),
         submit: document.querySelector("#inp-submit")
@@ -220,7 +243,6 @@ $(function(){
         e.preventDefault();
         const obj = JSON.parse(sessionStorage.getItem('data'));
         obj.name = profile_form.user.value;
-        obj.password = profile_form.password.value;
         obj.username = profile_form.email.value;
         obj.gender = document.querySelector('input[name="Gender"]:checked').value;
         const path = "http://localhost:8080/api/user/"+ obj.iduser; 
@@ -228,5 +250,6 @@ $(function(){
         sessionStorage.setItem("data", JSON.stringify(obj));
         location.reload();
     })
+   
     
 })

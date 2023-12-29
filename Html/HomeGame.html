@@ -69,12 +69,6 @@
                             </div>
                         </div>
                         <div class="inputregister">
-                            <p class="titlelogin">Mật khẩu</p>
-                            <div class="user">
-                                <input class="form-control inputtxt" id="inp-password" type="password" style="width: 250px;">
-                            </div>
-                        </div>
-                        <div class="inputregister">
                             <p class="titlelogin">Email</p>
                             <div class="user">
                                 <input class="form-control inputtxt" id="inp-email" type="text" style="width: 250px;" readonly>
@@ -93,6 +87,28 @@
                         </div>
                         <div class="" style="padding: 10px;">
                             <input class="btnLogin" id="inp-submit" type="button" value="Cập nhật">
+                        </div>
+                    </div>
+                </form>
+                <form class="change-password">
+                    <div class="box-change-password">
+                        <div class="title-login">
+                            <h2>Đổi mật khẩu</h2>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Mật khẩu mới</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="new-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Nhập lại mật khẩu mới</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="confirm-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="" style="padding-top: 30px;">
+                            <input class="btnLogin" id="submit-change" type="button" value="Đổi mật khẩu">
                         </div>
                     </div>
                 </form>
@@ -184,9 +200,12 @@
                 <button class="account-button" onclick="profile_func()">
                     <i class="fa-solid fa-gear"></i>
                     Cài đặt</button>
+                <button class="account-button" onclick="change_password()">
+                    <i class="fa-solid fa-lock"></i>
+                    Đổi mật khẩu</button>
                 <div class="account-button" id="btn-logout" style="color: black; text-decoration: none;">
                     <i class="fa-solid fa-right-from-bracket "></i>
-                    Đăng xuất
+                    Đăng xuất   
                 </div>
             </div>
         </div>
