@@ -12,7 +12,7 @@ async function getData(url = "", data = []) {
     console.log(data);
     const response = await fetch(url, {
         credentials: 'include',
-        method: 'POST',
+        method: 'PUT',
         headers: {
             "Content-Type": "application/json"
         },
