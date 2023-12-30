@@ -194,7 +194,9 @@
 .list-questions .button .btn-submit:hover {
     background-color: #3166C7;
 }
-
+.list-questions .button .btn-submit:disabled {
+    background-color: #a8af7e;
+}
 .main-container .btn-exit{
     display: flex;
     position: fixed;
@@ -239,3 +241,269 @@
     background-color: #9A49AA;
     color: white;
 }
+
+ /* hiện kết quả */
+
+.pricing-table {
+    font-family: var(--font-family);
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+  }
+  
+.pricing-table .card {
+    color: #fff;
+    width: 350px;
+    height: 500px;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 46px -4px rgba(0, 0, 0, 0.6);
+    transition: all 0.2s ease-in-out;
+    background: linear-gradient(to left, #91eae4, #86a8e7, #7f7fd5);
+    -webkit-box-shadow: 0 10px 15px rgba(0,0,0,.1) ;
+            box-shadow: 0 10px 15px rgba(0,0,0,.1) ;
+  -webkit-transition: .5s;
+  }
+
+  .pricing-table .card:nth-child(1) .price::before {
+    
+    content: attr(data-price);
+  }
+  
+  .pricing-table .card:nth-child(1) {
+    font-size: 35px;
+  }
+  
+  .pricing-table .card:nth-child(1) .buy-button h3 {
+    font-size: 1rem;
+    top: 0%;
+    left: 13%;
+  }
+  
+  .pricing-table .card .type {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    letter-spacing: 0.1rem;
+    font-size: 24px;
+  }
+  
+  .pricing-table .card .price {
+    font-size: 6rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .pricing-table .card .price::before {
+    position: absolute;
+    content: "";
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 7.5rem;
+    z-index: -1;
+    right: 10%;
+    bottom: 25%;
+    text-shadow: 0 0 0px rgba(0, 0, 0, 0);
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .pricing-table .card .plan {
+    font-size: 1.3rem;
+    position: relative;
+    margin-top: -22px;
+    margin-bottom: -4px;
+  }
+  
+  .pricing-table .card .details {
+      text-transform: capitalize;
+      max-height: 200px; /* Hoặc bất kỳ kích thước nào phù hợp */
+      overflow-y: auto;
+      padding-right: 15px; /* Tạo không gian để tránh việc thanh cuộn che phủ nội dung */
+      margin-right: -15px; /* Điều chỉnh margin để tránh việc thanh cuộn bị che phủ */
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    .name {
+        flex-basis: 75%; /* Chỉnh kích thước của mỗi cột */
+    }
+    .score
+    {
+        flex-basis: 25%; /* Chỉnh kích thước của mỗi cột */
+    }
+    .pricing-table .card .details li {
+      flex-grow: 1;
+      box-sizing: border-box;
+      word-break: break-word;
+      list-style-type: decimal;
+      margin-left: 9px;
+      width: 50%; /* Mỗi li chiếm 50% chiều rộng để tạo thành 2 cột */
+      box-sizing: border-box;
+    }
+    li.highlight {
+        color: rgb(189, 209, 78);
+    }
+    /* Tùy chỉnh thanh cuộn */
+    .pricing-table .card .details::-webkit-scrollbar {
+      width: 10px; /* Độ rộng của thanh cuộn */
+    }
+    
+    .pricing-table .card .details::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Màu nền của phần track của thanh cuộn */
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .pricing-table .card .details::-webkit-scrollbar-thumb {
+      background:  #91eae4; /* Màu nền của phần thumb của thanh cuộn */
+      border-radius: 5px; /* Bo tròn góc của thanh cuộn */
+    }
+    
+    .pricing-table .card .details::-webkit-scrollbar-thumb:hover {
+      background: #7de7e0; /* Màu nền khi di chuột qua thumb của thanh cuộn */
+    }
+    
+  
+  .pricing-table .card .buy-button {
+    cursor: pointer;
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    background: #fff;
+    border-radius: 15%;
+    right: -28%;
+    bottom: -28%;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .pricing-table .card .buy-button h3 {
+    text-shadow: 0 0 0;
+    text-decoration: none;
+    color: #fff;
+    position: absolute;
+    left: 8%;
+    top: 10%;
+    color: #000;
+    font-size: 1.2rem;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .pricing-table .card:hover {
+    transform: scale(1.02);
+  }
+  
+  .pricing-table .card:hover .price::before {
+    animation: text-hover 1s ease-in-out infinite normal;
+  }
+  
+  .pricing-table .card:hover .plan::before {
+    right: 90%;
+  }
+  
+  .pricing-table .card:hover .plan::after {
+    right: -90%;
+  }
+  
+  .pricing-table .card:hover .buy-button {
+    width: 100%;
+    right: 0%;
+    border-radius: 0%;
+  }
+  
+  .pricing-table .card:hover .buy-button h3 {
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  @keyframes text-hover {
+    0% {
+      right: -30%;
+    }
+    50% {
+      right: -37%;
+    }
+    100% {
+      right: -30%;
+    }
+  }
+
+  /* Loading */
+
+  .loader {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #91eae4;
+    animation: loader 2s infinite ease;
+  }
+  
+  
+  .loader-inner {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    background-color:  #91eae4;
+    animation: loader-inner 2s infinite ease-in;
+  }
+  
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    
+    25% {
+      transform: rotate(180deg);
+    }
+    
+    50% {
+      transform: rotate(180deg);
+    }
+    
+    75% {
+      transform: rotate(360deg);
+    }
+    
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes loader-inner {
+    0% {
+      height: 0%;
+    }
+    
+    25% {
+      height: 0%;
+    }
+    
+    50% {
+      height: 100%;
+    }
+    
+    75% {
+      height: 100%;
+    }
+    
+    100% {
+      height: 0%;
+    }
+  }

@@ -9,7 +9,14 @@ var list_attend = document.querySelector(".list-attend");
 var exit_btn = document.querySelector(".exit-button");
 var list_questions = document.querySelector(".list-questions");
 var main = document.querySelector(".main-container");
-
+var userScore = 0;
+var questionCount = 0;
+var countdowntime = 0;
+var finishtest = 0;
+var result_table = document.querySelector(".pricing-table");
+result_table.style.display = 'none';
+var  loader = document.querySelector(".loader");
+loader.style.display = 'none';
 function connect(event) {
     username = JSON.parse(sessionStorage.getItem("data"))['name'];
     if (username) {
@@ -36,7 +43,6 @@ if (objdata) {
     console.log('Data is null or undefined');
 }
 
-
 function disconnect(event){
     if(stompClient != null){
         stompClient.disconnect();
@@ -56,6 +62,18 @@ function onError(error) {
     console.log(error)
 }
 let questions = [];
+async function putData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        body: JSON.stringify(data)
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
 function enterRoom(newRoomId) {
     roomId = newRoomId;
     // Cookies.set('roomId', roomId);
@@ -98,58 +116,176 @@ function enterRoom(newRoomId) {
         if(currentSubscription_quiz){
             currentSubscription_quiz.unsubscribe();
         }
-        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(quizzes){
-            for (let i = 0; i < quizzes.length; i++) {
-                let question = {
-                    numb: i + 1,
-                    picture: quizzes[i].picture,
-                    subject: quizzes[i].subject,
-                    difficulty: quizzes[i].difficulty,
-                    timeAnswered: quizzes[i].timeAnswered,
-                    type: determineType(quizzes[i]),
-                    question: quizzes[i].quizz_info,
-                    answer: extractAnswer(quizzes[i]),
-                    options: determineOptions(quizzes[i])
-                };
-                questions.push(question);
-            }
-            console.log("Nè");
-            console.log(questions);
+        currentSubscription_quiz = stompClient.subscribe(`/questions/${roomId}`, function(_quizzes){
             inf_room.style.display = "none";
             list_attend.style.display = "none";
-            main.style.justifyContent = "center";
-            main.style.alignItems = "center";
-            list_questions.style.display = "flex";
-
-            showQuestions(0);
+            loader.style.display = 'block';
+            var quizzes = JSON.parse(_quizzes.body);
+                for (let i = 0; i < quizzes.length; i++) {
+                    let question = {
+                        numb: i + 1,
+                        picture: quizzes[i].picture,
+                        subject: quizzes[i].subject,
+                        difficulty: quizzes[i].difficulty,
+                        timeAnswered: quizzes[i].timeAnswered,
+                        type: determineType(quizzes[i]),
+                        question: quizzes[i].quizz_info,
+                        answer: extractAnswer(quizzes[i]),
+                        options: determineOptions(quizzes[i])
+                    };
+                    questions.push(question);
+                }
+            setTimeout(function() {
+                loader.style.display = 'none';
+                main.style.justifyContent = "center";
+                main.style.alignItems = "center";
+                list_questions.style.display = "flex";
+                showQuestions(0);
+              }, 3000);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
         }
-        currentSubscription_result = stompClient.subscribe(`/result/${roomId}`, function(result){})
+        currentSubscription_result = stompClient.subscribe(`/result/${roomId}`, function(_result){
+            var result = JSON.parse(_result.body);
+            // var result_sort = sortByPoints(result);
+            const sortedData = Object.entries(result).sort((a, b) => b[1] - a[1]);
+            var rank = document.querySelector(".price");
+            var user = document.querySelector(".plan");
+            var table_rank = document.querySelector(".details");
+            user.innerHTML = username;
+            let table_content = '';
+            for(let i = 0 ; i < sortedData.length ; i++)
+            {
+                const [name, score] = sortedData[i];
+                console.log(`${name}: ${score}`);
+                if(name == username)
+                {
+                    rank.innerHTML = i + 1;
+                    rank.dataset.price = i+1;
+                    table_content += `<li class="highlight">
+                                            <span class="name">${name}</span>
+                                            <span class="score">${score}</span>
+                                      </li>`;
+                    var _data = JSON.parse(sessionStorage.getItem("data"));
+                    if(sortedData.length == 2)
+                    {
+                        _data.normal_statistic.gamePlayed++;
+                        if(i==0)
+                            _data.normal_statistic.gameWon++;
+                            var normal_statistic = {
+                                iduser : _data.iduser,
+                                gamePlayed : _data.normal_statistic.gamePlayed,
+                                gameWon : _data.normal_statistic.gameWon
+                            }
+                            putData("http://localhost:8080/api/user/statistic/normal/"+ _data.iduser, normal_statistic);
+                    }
+                    else
+                    {
+                        _data.rank_statistic.gamePlayed++;
+                        if(i==0)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point += 20;
+                        }
+                        if(i==1)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point += 10;
+                        }
+                        if(i==2)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point -= 5;
+                        }
+                        if(i==3)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point -= 10;
+                        }
+                        _data.rank_statistic.rank = set_rank(rank_statistic.point);
+                        var rank_statistic = {
+                            iduser : _data.iduser,
+                            rank : _data.rank_statistic.rank,
+                            point : _data.rank_statistic.point,
+                            gamePlayed : _data.rank_statistic.gamePlayed,
+                            gameWon : _data.rank_statistic.gameWon
+                        }
+                        putData("http://localhost:8080/api/user/statistic/rank/"+ _data.iduser, rank_statistic);
+                    }
+                    sessionStorage.setItem("data", JSON.stringify(_data));
+                }
+                else
+                {
+                    table_content += `<li>
+                                        <span class="name">${name}</span>
+                                        <span class="score">${score}</span>
+                                      </li>`;
+                }
+            }
+            table_rank.innerHTML = table_content;
+            loader.style.display = 'none';
+            result_table.style.display = 'block';
+        })
     });
-  
     stompClient.send('/app/'+newRoomId+"/join",
         {},
         JSON.parse(sessionStorage.getItem('data')).name
     );
 }
-
-// set countdown
-var countdownTime = 120*60; // for example, 60 seconds
-
-function updateCountdown() {
-  var countdownElement = document.getElementById('countdown');
-  countdownElement.innerHTML = formatTime(countdownTime);
-
-  if (countdownTime > 0) {
-    countdownTime--;
-    setTimeout(updateCountdown, 1000); // Update every second
-  } else {
-    countdownElement.innerHTML = "Đã hết thời gian!";
-  }
+function set_rank(point)
+{
+    if(0 <= point && point < 100)
+    {
+        return "Sắt";
+    }
+    if(100 <= point && point < 200)
+    {
+        return "Đồng";
+    }
+    if(200 <= point && point < 300)
+    {
+        return "Bạc";
+    }
+    if(300 <= point && point < 100000)
+    {
+        return "Vàng";
+    }
 }
+// function sortByPoints(result) {
+//     const sortedResult = Object.entries(result)
+//       .sort((a, b) => b[1] - a[1]) // Sắp xếp theo giá trị điểm giảm dần
+//       .reduce((acc, [key, value]) => {
+//         acc[key] = value;
+//         return acc;
+//       }, {});
+  
+//     return sortedResult;
+// }
+// set countdown
 
+function updateCountdown(question_index) {
+    var countdownElement = document.getElementById('countdown');
+    countdownElement.innerHTML = formatTime(countdowntime);
+    if(question_index == questionCount)
+    {
+        if (countdowntime > 0 ) 
+        {
+            console.log(countdowntime);
+            countdowntime--;
+            setTimeout(() => {
+                updateCountdown(question_index); // Gọi lại hàm với thời gian mới
+            }, 1000); // Update every second
+        } 
+        else 
+        {     
+            if (questionCount < questions.length - 1)
+                showQuestions(++questionCount);
+            if (questionCount == questions.length - 1)
+                stompClient.send('/app/'+roomId+"/submitpoint",{},JSON.stringify({name: username, points: userScore}));
+        }
+    }
+}
 function formatTime(seconds) {
   var minutes = Math.floor(seconds / 60);
   var remainingSeconds = seconds % 60;
@@ -162,8 +298,6 @@ function formatTime(seconds) {
   return minutes + ":" + remainingSeconds;
 }
 
-// Start the countdown
-updateCountdown();
 // Đổi json câu hỏi thành question 
 function determineType(quizz) {
     if (quizz.choose_one !== null) {
@@ -179,9 +313,9 @@ function extractAnswer(quizz) {
     if (quizz.choose_one !== null) {
         return quizz.choose_one.right_answer;
     } else if (quizz.choose_many !== null) {
-        return quizz.choose_many.filter(answer => answer.right).map(answer => answer.answer);
+        return quizz.choose_many.map(answer => answer.right);
     } else if (quizz.writing !== null) {
-        return quizz.writing.answer;
+        return quizz.writing[0].answer;
     }
     return null;
 }
@@ -198,88 +332,73 @@ function determineOptions(quizz) {
     }
     return null;
 }
+function transformImage(quizz) {
+    if (quizz !== null && typeof quizz === 'object' && quizz.picture !== null && typeof quizz.picture === 'string') {
+        return `data:image/png;base64,${quizz.picture}`;
+    }
+    return null;
+}
 // Phần thi 
-// let questions = [
-//     {
-//         numb: 1,
-//         type: "choose_1",
-//         question: "What does HTML stand for?",
-//         answer: "C. Hyper Text Markup Language",
-//         options: [
-//             "A. Hyper Type Multi Language",
-//             "B. Hyper Text Multiple Language",
-//             "C. Hyper Text Markup Language",
-//             "D. Home Text Multi Language"
-//         ]
-//     },
-//     {
-//         numb: 2,
-//         type: "choose_n",
-//         question: "What does CSS stand fordsadasdasdasdasdasdadadadad?",
-//         answer: [
-//             "T",
-//             "T",
-//             "F",
-//             "F"
-//         ],
-//         options: [
-//             "A. Cascading Style Sheet",
-//             "B. Cute Style Sheet",
-//             "C. Computer Style Sheet",
-//             "D. Codehal Style Sheet",
-//             "E. Codehal Style Sheet"
-//         ]
-//     },
-//     {
-//         numb: 3,
-//         type: "a",
-//         question: "What does PHP stand for?",
-//         answer: "hello",
-//     },
-//     {
-//         numb: 4,
-//         type: "choose_1",
-//         question: "What does SQL stand for?",
-//         answer: "D. Structured Query Language",
-//         options: [
-//             "A. Strength Query Language",
-//             "B. Stylesheet Query Language",
-//             "C. Science Question Language",
-//             "D. Structured Query Language"
-//         ]
-//     },
-// ];
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+  
+    // Trong khi còn phần tử để hoán đổi
+    while (currentIndex != 0) {
+      // Chọn một phần tử còn lại ngẫu nhiên
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // Hoán đổi vị trí phần tử hiện tại với phần tử được chọn ngẫu nhiên
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+  
+    return array;
+  }
 
 const optionList = document.querySelector('.optionList');
 const nextBtn = document.querySelector('.btn-next');
 const submitBtn = document.querySelector('.btn-submit');
 
 
-let questionCount = 0;
-// let questionNumb = 1;
-let userScore = 0;
-
-// showQuestions(0);
 
 nextBtn.onclick = () => {
     if (questionCount < questions.length - 1) {
         questionCount++;
         showQuestions(questionCount);
-        // questionNumb++;
-        // questionCounter(questionNumb);
+        if(questionCount == questions.length - 1) 
+            nextBtn.innerText  = "Nộp bài";
     }
-    else {
+    else 
+    {
+        questionCount++;
+        nextBtn.disabled = true;
+        showResult();
         console.log('Question Completed');
     }
 }
 var selectedOption = null;
+const submitButton = document.querySelector('.btn-submit');
+const in4_detail = document.querySelector('#in4_detail');
 function showQuestions(index) {
-    
+    submitButton.disabled = false;
     const questionText = document.querySelector('.question-text');
     questionText.textContent = `${questions[index].numb}. ${questions[index].question}`;
-    let optionTag;
+    in4_detail.textContent = "Môn học: " + `${questions[index].subject}` + "              Loại: " + `${questions[index].type}`;
+    let optionTag ='';
+    if(questions[index].picture != null)
+    {
+        const imageUrl = questions[index].picture; 
+        optionTag += `<div class="picture-container">
+                        <img src="data:image/png;base64,${imageUrl}" alt="Image" />
+                    </div>`;
+    };
     if(questions[index].type == 'choose_1') {
-        optionTag = `<div class="list-answers">
+        shuffle(questions[index].options);
+        optionTag += `<div class="list-answers">
                         <div class="option"><span>${questions[index].options[0]}</span></div>
                         <div class="option"><span>${questions[index].options[1]}</span></div>
                         <div class="option"><span>${questions[index].options[2]}</span></div>
@@ -291,7 +410,7 @@ function showQuestions(index) {
     {
         if(questions[index].type == 'choose_n')
         {
-            optionTag = `<div class="list-answers">`;
+            optionTag += `<div class="list-answers">`;
             for (let i = 0; i < questions[index].options.length; i++) {
                 optionTag += ` <div class="option"><span>${questions[index].options[i]}</span></div>`;
             }
@@ -299,7 +418,7 @@ function showQuestions(index) {
             selectedOption = null;
         }
         else
-            optionTag = `<input type="text" class="inp-answers" name="">`;
+            optionTag += `<input type="text" class="inp-answers" name="">`;
     }
     optionList.innerHTML = optionTag;
     if(questions[index].type == 'choose_1') {
@@ -315,6 +434,8 @@ function showQuestions(index) {
             option[i].setAttribute('onclick', 'choosen(this)');
         }
     }
+    countdowntime = questions[index].timeAnswered;
+    updateCountdown(index);
 }
 function choose1 (answer) {
     const options = document.querySelectorAll('.option');
@@ -332,8 +453,14 @@ function choosen (answer) {
         answer.classList.add('choose');
     } 
 }
-const submitButton = document.querySelector('.btn-submit');
+function showResult()
+{
+    main.style.display = 'none';
+    loader.style.display = 'block';
+    stompClient.send('/app/'+roomId+"/submitpoint",{},JSON.stringify({name: username, points: userScore}));
+}
 submitButton.addEventListener('click', function() {
+    submitButton.disabled = true;
     const option = document.querySelectorAll('.option');
     if(questions[questionCount].type == 'choose_1')
     {   
@@ -344,7 +471,7 @@ submitButton.addEventListener('click', function() {
                 {
 
                     option[i].classList.add('correct');
-                    userScore++;
+                    userScore += countdowntime;
                 }
                 else {
                     option[i].classList.add('incorrect');
@@ -369,10 +496,9 @@ submitButton.addEventListener('click', function() {
             for (let i = 0; i < option.length; i++) {
                 if(option[i].classList.contains('choose'))
                 {
-                    if(questions[questionCount].answer[i]=='T')
+                    if(questions[questionCount].answer[i]== true)
                     {
                         option[i].classList.add('correct');
-                        userScore++;
                     }
                     else {
                         check = false;
@@ -381,14 +507,14 @@ submitButton.addEventListener('click', function() {
                 }
                 else
                 {
-                    if(questions[questionCount].answer[i]=='F')
+                    if(questions[questionCount].answer[i]== true)
                     {
                         check = false;
                         option[i].classList.add('correct');
                     }
                 }
             }
-            if(check == true)   userScore++;
+            if(check == true)   userScore += countdowntime;;
         }
         else
         {
@@ -399,7 +525,7 @@ submitButton.addEventListener('click', function() {
             if(textContent == questions[questionCount].answer.trim().toLowerCase())
             {
                     contentDiv.classList.add('correct');
-                    userScore++;
+                    userScore += countdowntime;
             }
             else
                 contentDiv.classList.add('incorrect');
@@ -407,7 +533,16 @@ submitButton.addEventListener('click', function() {
     }
 });
 
+const confirmationButton = document.querySelector('.btn');
+
+function handleClick() {
+    window.location.href= "../Html/HomeGame.html"
+}
+
+confirmationButton.addEventListener('click', handleClick);
+
 $(function() {
     window.addEventListener("load", connect);
     exit_btn.addEventListener("click", disconnect);
 });
+

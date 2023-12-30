@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-ticket iconbtn"></i>
                     Phòng đấu
                 </button>
-                <button type="button" class=" button-menu " >
+                <button type="button" class=" button-menu "onclick="make_practice()" >
                     <i class="fa-solid fa-feather iconbtn"></i>
                     Luyện tập
                 </button>
@@ -47,7 +47,7 @@
                         <input type="text" class="igame inp-name" disabled>
                         <div class="match">
                             <div style="display: flex;">
-                                <p style="margin-bottom: 5px; margin-top: 5px;">Hạng:</p>
+                                <p style="margin-bottom: 5px; margin-top: 5px;"><i class="fa-solid fa-medal"></i></p>
                                 <input type="text" id="inp-played" style="border: none;margin-top: 5px; background-color: #0BC2CF;color:white; height: 25px;" disabled>
                             </div>
                             <div style="display: flex;">
@@ -69,12 +69,6 @@
                             </div>
                         </div>
                         <div class="inputregister">
-                            <p class="titlelogin">Mật khẩu</p>
-                            <div class="user">
-                                <input class="form-control inputtxt" id="inp-password" type="password" style="width: 250px;">
-                            </div>
-                        </div>
-                        <div class="inputregister">
                             <p class="titlelogin">Email</p>
                             <div class="user">
                                 <input class="form-control inputtxt" id="inp-email" type="text" style="width: 250px;" readonly>
@@ -93,6 +87,28 @@
                         </div>
                         <div class="" style="padding: 10px;">
                             <input class="btnLogin" id="inp-submit" type="button" value="Cập nhật">
+                        </div>
+                    </div>
+                </form>
+                <form class="change-password">
+                    <div class="box-change-password">
+                        <div class="title-login">
+                            <h2>Đổi mật khẩu</h2>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Mật khẩu mới</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="new-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Nhập lại mật khẩu mới</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="confirm-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="" style="padding-top: 30px;">
+                            <input class="btnLogin" id="submit-change" type="button" value="Đổi mật khẩu">
                         </div>
                     </div>
                 </form>
@@ -128,38 +144,81 @@
                 <!-- </form> -->
             </div>
             <div class="ranked-list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Xếp hạng</th>
-                            <th>Tên</th>
-                            <th>Điểm</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Anh</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Anh</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Anh</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Anh</td>
-                            <td>1000</td>
-                        </tr>
+                <section><h3 style="color: white;"><i class="fas fa-trophy iconbtn" style="color: rgb(233, 208, 85);"></i> Bảng xếp hạng</h3></section>
+                <section>
+                    <table class="list-R">
+                        <thead>
+                            <tr>
+                                <th>Xếp hạng</th>
+                                <th>Tên</th>
+                                <th>Điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rank-content">
+                            <tr>
+                                <td>1</td>
+                                <td>Anh</td>
+                                <td>1000000000000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>1</td>
+                                <td>Anh</td>
+                                <td>1000</td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <div class="practice">
+                <div class="popup">
+                    <div class="popup-content">
+                      <h2 class="popup-title">Luyện tập</h2>
+                      <p class="popup-body">Luyện tập để giỏi hơn nào </p>
+                      <button class="popup-button">Bắt đầu</button>
+                    </div>  
+                  </div>  
+                <div class="list-questions">
+                    <div class="countdown-timer">
+                        <p>Thời gian:</p>
+                        <div class="timer-sec" id="countdown" style="color: red;"></div>
+                    </div>
+                    <div class="question-choose-one">
+                        <h3 class="question-text"></h3>
+                        <h3 class="question-text" id="in4_detail"></h3>
+                        <div class="optionList">
+                            <div class="list-answers">
 
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button class="btn-submit" id="btn-answer">Trả lời</button>
+                        <button class="btn-next">Câu kế tiếp</button>
+                    </div>
+        
+                </div>
             </div>
         </div>
         <div class="custom-dropdown">
@@ -170,9 +229,12 @@
                 <button class="account-button" onclick="profile_func()">
                     <i class="fa-solid fa-gear"></i>
                     Cài đặt</button>
+                <button class="account-button" onclick="change_password()">
+                    <i class="fa-solid fa-lock"></i>
+                    Đổi mật khẩu</button>
                 <div class="account-button" id="btn-logout" style="color: black; text-decoration: none;">
                     <i class="fa-solid fa-right-from-bracket "></i>
-                    Đăng xuất
+                    Đăng xuất   
                 </div>
             </div>
         </div>
