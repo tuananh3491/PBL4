@@ -62,6 +62,18 @@ function onError(error) {
     console.log(error)
 }
 let questions = [];
+async function putData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        body: JSON.stringify(data)
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
 function enterRoom(newRoomId) {
     roomId = newRoomId;
     // Cookies.set('roomId', roomId);
@@ -129,7 +141,7 @@ function enterRoom(newRoomId) {
                 main.style.alignItems = "center";
                 list_questions.style.display = "flex";
                 showQuestions(0);
-              }, 5000);
+              }, 3000);
         });
         if(currentSubscription_result){
             currentSubscription_result.unsubscribe();
@@ -155,6 +167,53 @@ function enterRoom(newRoomId) {
                                             <span class="name">${name}</span>
                                             <span class="score">${score}</span>
                                       </li>`;
+                    var _data = JSON.parse(sessionStorage.getItem("data"));
+                    if(sortedData.length == 2)
+                    {
+                        _data.normal_statistic.gamePlayed++;
+                        if(i==0)
+                            _data.normal_statistic.gameWon++;
+                            var normal_statistic = {
+                                iduser : _data.iduser,
+                                gamePlayed : _data.normal_statistic.gamePlayed,
+                                gameWon : _data.normal_statistic.gameWon
+                            }
+                            putData("http://localhost:8080/api/user/statistic/normal/"+ _data.iduser, normal_statistic);
+                    }
+                    else
+                    {
+                        _data.rank_statistic.gamePlayed++;
+                        if(i==0)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point += 20;
+                        }
+                        if(i==1)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point += 10;
+                        }
+                        if(i==2)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point -= 5;
+                        }
+                        if(i==3)
+                        {
+                            _data.rank_statistic.gameWon++;
+                            _data.rank_statistic.point -= 10;
+                        }
+                        _data.rank_statistic.rank = set_rank(rank_statistic.point);
+                        var rank_statistic = {
+                            iduser : _data.iduser,
+                            rank : _data.rank_statistic.rank,
+                            point : _data.rank_statistic.point,
+                            gamePlayed : _data.rank_statistic.gamePlayed,
+                            gameWon : _data.rank_statistic.gameWon
+                        }
+                        putData("http://localhost:8080/api/user/statistic/rank/"+ _data.iduser, rank_statistic);
+                    }
+                    sessionStorage.setItem("data", JSON.stringify(_data));
                 }
                 else
                 {
@@ -174,7 +233,25 @@ function enterRoom(newRoomId) {
         JSON.parse(sessionStorage.getItem('data')).name
     );
 }
-
+function set_rank(point)
+{
+    if(0 <= point && point < 100)
+    {
+        return "Sắt";
+    }
+    if(100 <= point && point < 200)
+    {
+        return "Đồng";
+    }
+    if(200 <= point && point < 300)
+    {
+        return "Bạc";
+    }
+    if(300 <= point && point < 100000)
+    {
+        return "Vàng";
+    }
+}
 // function sortByPoints(result) {
 //     const sortedResult = Object.entries(result)
 //       .sort((a, b) => b[1] - a[1]) // Sắp xếp theo giá trị điểm giảm dần
@@ -205,7 +282,7 @@ function updateCountdown(question_index) {
             if (questionCount < questions.length - 1)
                 showQuestions(++questionCount);
             if (questionCount == questions.length - 1)
-               showResult();
+                stompClient.send('/app/'+roomId+"/submitpoint",{},JSON.stringify({name: username, points: userScore}));
         }
     }
 }

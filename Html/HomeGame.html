@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-ticket iconbtn"></i>
                     Phòng đấu
                 </button>
-                <button type="button" class=" button-menu " >
+                <button type="button" class=" button-menu "onclick="make_practice()" >
                     <i class="fa-solid fa-feather iconbtn"></i>
                     Luyện tập
                 </button>
@@ -174,6 +174,35 @@
                         </tbody>
                     </table>
                 </section>
+            </div>
+            <div class="practice">
+                <div class="popup">
+                    <div class="popup-content">
+                      <h2 class="popup-title">Luyện tập</h2>
+                      <p class="popup-body">Luyện tập để giỏi hơn nào </p>
+                      <button class="popup-button">Bắt đầu</button>
+                    </div>  
+                  </div>  
+                <div class="list-questions">
+                    <div class="countdown-timer">
+                        <p>Thời gian:</p>
+                        <div class="timer-sec" id="countdown" style="color: red;"></div>
+                    </div>
+                    <div class="question-choose-one">
+                        <h3 class="question-text"></h3>
+                        <h3 class="question-text" id="in4_detail"></h3>
+                        <div class="optionList">
+                            <div class="list-answers">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button class="btn-submit" id="btn-answer">Trả lời</button>
+                        <button class="btn-next">Câu kế tiếp</button>
+                    </div>
+        
+                </div>
             </div>
         </div>
         <div class="custom-dropdown">
