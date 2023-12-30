@@ -218,8 +218,8 @@ function change_password(){
 }
 document.querySelector("#submit-change").addEventListener("click", e => {
     e.preventDefault();
-    const obj = JSON.parse(sessionStorage.getItem('data'));
-    if(document.querySelector("#new-password").value==document.querySelector("#confirm-password").value){
+    var obj = JSON.parse(sessionStorage.getItem('data'));
+   if(document.querySelector("#new-password").value==document.querySelector("#confirm-password").value){
         obj.password = document.querySelector("#new-password").value;
         const path = "http://localhost:8080/api/user/"+ obj.iduser;
         putData(path, obj);
