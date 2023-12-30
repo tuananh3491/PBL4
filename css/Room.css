@@ -84,6 +84,7 @@
     width: 80%;
     min-height: auto;
     font-family: var(--font-family);
+    padding: auto;
 }
 
 .countdown-timer {
@@ -100,7 +101,9 @@
 .question-choose-one {
     margin-top: 10px; /* Khoảng cách giữa countdown-timer và question-choose-one */
 }
-
+.question-choose-one .question-text{
+    margin: 10px,10px,10px,10px;
+}
 .list-answers {
     display: grid;
     padding: 10px;
