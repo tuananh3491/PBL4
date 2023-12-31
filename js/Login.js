@@ -11,7 +11,8 @@ async function getData(url = "", data = []) {
     // Default options are marked with *
     console.log(data);
     const response = await fetch(url, {
-        method: 'PUT',
+        credentials: 'include',
+        method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
@@ -124,3 +125,6 @@ btnConfirmToken.addEventListener('click', function() {
        alert("Mật khẩu không giống nhau");
     }
 });
+$(function(){
+    document.cookie = 'JSESSIONID=AFAFWEEVV2323GG'
+})

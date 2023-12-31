@@ -27,7 +27,8 @@ async function getData(url = "", data = []) {
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Basic " + btoa("son:abcdd")
         },
         mode: "cors",
         body: JSON.stringify(data)
