@@ -11,6 +11,7 @@ async function getData(url = "", data = []) {
     // Default options are marked with *
     console.log(data);
     const response = await fetch(url, {
+        credentials: 'include',
         method: 'PUT',
         headers: {
             "Content-Type": "application/json"
@@ -67,8 +68,6 @@ resetPasswordButton.onclick = function() {
     form_resetpassword.style.display = 'block';
     confirm_token.style.display = 'none';
     new_password.style.display = 'none';
-    alert('Button Reset Password clicked!');
-    // Gọi hàm xử lý reset password tại đây (nếu cần)
 };
 var btnResetPassword = document.getElementById('btn_resetpassword');
 var token ;
@@ -85,8 +84,7 @@ btnResetPassword.addEventListener('click', function() {
                 alert("Gmail không tồn tại!"); // Hiển thị thông báo lỗi
             } else 
             {            
-                token = JSON.stringify(data);
-                console.log(token);
+                token = JSON.parse(data.body);
                 confirm_token.style.display = 'block';
                 send_email.style.display = 'none';
             }
@@ -99,10 +97,7 @@ var txtToken;
 var btnConfirmToken = document.getElementById('btn_cofirm_token');
 btnConfirmToken.addEventListener('click', function() {
     txtToken = document.getElementById('txt_token').value;
-    console.log(token);
-    console.log(txtToken);
     if (txtToken == token) {
-        alert("Kick");
         confirm_token.style.display = 'none';
         new_password.style.display = 'block';
     } else {
@@ -130,3 +125,6 @@ btnConfirmToken.addEventListener('click', function() {
        alert("Mật khẩu không giống nhau");
     }
 });
+$(function(){
+    document.cookie = 'JSESSIONID=AFAFWEEVV2323GG'
+})
