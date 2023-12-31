@@ -195,15 +195,15 @@ function enterRoom(newRoomId) {
                         }
                         if(i==2)
                         {
-                            _data.rank_statistic.gameWon++;
                             _data.rank_statistic.point -= 5;
                         }
                         if(i==3)
                         {
-                            _data.rank_statistic.gameWon++;
                             _data.rank_statistic.point -= 10;
                         }
-                        _data.rank_statistic.rank = set_rank(rank_statistic.point);
+                        if(_data.rank_statistic.point < 0)
+                        _data.rank_statistic.point = 0;
+                        _data.rank_statistic.rank = set_rank(_data.rank_statistic.point);
                         var rank_statistic = {
                             iduser : _data.iduser,
                             rank : _data.rank_statistic.rank,
