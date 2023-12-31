@@ -19,8 +19,14 @@ async function getData(url = "", data = []) {
         mode: "cors",
         body: JSON.stringify(data)
     });
-    const jsonData = await response.json();
-    console.log(response.status);
+    var jsonData = null;
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+        jsonData = await response.json();
+    } else {
+        jsonData = await response.text();
+    }
+    console.log(jsonData);
     return {status: response.status, body: jsonData};
      // parses JSON response into native JavaScript objects
 }
@@ -48,7 +54,7 @@ let button = form.submit.addEventListener("click", (e) => {
             window.location.href = "../Html/HomeGame.html"; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
         }
         else {
-            alert("thử nghiệm");
+            alert(obj.body);
         }
     })
     .catch((err) =>{

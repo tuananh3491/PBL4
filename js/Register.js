@@ -72,7 +72,7 @@ var Login= document.querySelector('.Login');
 let button = form.submit.addEventListener("click", (e) => {
     
     const login = 'http://localhost:8080/api/user/cofirm_gmail';
-    getData(login, [form.email.value]).then((data) => {           
+    getData(login, [form.email.value, form.user.value]).then((data) => {           
         if(data.status === 200){
             token = JSON.stringify(data.body);
             console.log(token);
@@ -80,7 +80,7 @@ let button = form.submit.addEventListener("click", (e) => {
             Login.style.display = 'none';
         }
         else {
-            alert(JSON.stringify(data.body));
+            alert(data.body);
         }
     })
     // .catch((err) =>{
