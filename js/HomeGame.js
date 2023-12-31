@@ -7,7 +7,10 @@ var practice = document.querySelector(".practice");
 var popup = document.querySelector(".popup");
 var list_questions = document.querySelector(".list-questions");
 var profile_form = null;
+var boxchange = document.querySelector(".box-change-password");
+var boxlogin = document.querySelector(".box-login")
 practice.style.display = 'none';
+
 async function getData(url = "") {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -240,6 +243,7 @@ document.querySelector("#submit-change").addEventListener("click", e => {
         const path = "http://localhost:8080/api/user/"+ obj.iduser;
         putData(path, obj);
         sessionStorage.setItem("data", JSON.stringify(obj));
+        alert("Đổi mật khẩu thành công")
         location.reload();
     }
     else{
