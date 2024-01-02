@@ -108,10 +108,13 @@ function enterRoom(newRoomId) {
         div1.innerHTML = string;
         inf_room.appendChild(div1);
         for (let [key, value] of Object.entries(data.playersPoints)){
-            var div2 = document.createElement("div");
-            var string2 = "<p class='t-room'>" + key +"</p>";
-            div2.innerHTML = string2;
-            list_attend.appendChild(div2);
+            // var div2 = document.createElement("div");
+            // var string2 = "<p class='t-room'>" + key +"</p>";
+            // div2.innerHTML = string2;
+            // list_attend.appendChild(div2);
+            list_attend.innerHTML += `<div class="nguoichoi">
+                                            <p>${key}</p>
+                                    </div>`;
         }
         if(currentSubscription_quiz){
             currentSubscription_quiz.unsubscribe();
@@ -380,6 +383,21 @@ nextBtn.onclick = () => {
         console.log('Question Completed');
     }
 }
+function type_question(type)
+{
+    if(type == "choose_1")
+    {
+        return "Chọn 1 đáp án";
+    }
+    if(type == "choose_n")
+    {
+        return "Chọn nhiều đáp án";
+    }
+    if(type == "writing")
+    {
+        return "Tụ luận";
+    }
+}
 var selectedOption = null;
 const submitButton = document.querySelector('.btn-submit');
 const in4_detail = document.querySelector('#in4_detail');
@@ -387,7 +405,7 @@ function showQuestions(index) {
     submitButton.disabled = false;
     const questionText = document.querySelector('.question-text');
     questionText.textContent = `${questions[index].numb}. ${questions[index].question}`;
-    in4_detail.textContent = "Môn học: " + `${questions[index].subject}` + "              Loại: " + `${questions[index].type}`;
+    in4_detail.textContent = "Môn học: " + `${questions[index].subject}` + "              Loại: " + type_question(questions[index].type);
     let optionTag ='';
     if(questions[index].picture != null)
     {

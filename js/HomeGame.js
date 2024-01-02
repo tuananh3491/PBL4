@@ -8,6 +8,7 @@ var boxchange = document.querySelector(".box-change-password");
 var practice = document.querySelector(".practice");
 var popup = document.querySelector(".popup");
 var list_questions = document.querySelector(".list-questions");
+var optionList = document.querySelector('.optionList');
 var profile_form = null;
 practice.style.display = 'none';
 phanquyen();
@@ -18,7 +19,7 @@ function phanquyen()
     if(_data.role == true)
     {
         menu_button.innerHTML += `<button type="button" class=" button-menu"onclick="CRUD_Quizz()" >
-                                        <i class="fas fa-trophy iconbtn"></i>
+        <i class="fa-solid fa-circle-question"></i>
                                         Câu hỏi
                                     </button>`;
     }
@@ -392,8 +393,21 @@ function shuffle(array) {
   
     return array;
   }
-
-var optionList = document.querySelector('.optionList');
+  function type_question(type)
+  {
+      if(type == "choose_1")
+      {
+          return "Chọn 1 đáp án";
+      }
+      if(type == "choose_n")
+      {
+          return "Chọn nhiều đáp án";
+      }
+      if(type == "writing")
+      {
+          return "Tụ luận";
+      }
+  }
 var nextBtn = document.querySelector('.btn-next');
 var submitBtn = document.querySelector('.btn-submit');
 var selectedOption = null;
@@ -402,7 +416,7 @@ function showQuestions(index) {
     submitBtn.disabled = false;
     const questionText = document.querySelector('.question-text');
     questionText.textContent = `${questions[index].numb}. ${questions[index].question}`;
-    in4_detail.textContent = "Môn học: " + `${questions[index].subject}` + "              Loại: " + `${questions[index].type}`;
+    in4_detail.textContent = "Môn học: " + `${questions[index].subject}` + "              Loại: " + type_question(questions[index].type);
     let optionTag ='';
     if(questions[index].picture != null)
     {
@@ -590,11 +604,7 @@ function lamcauhoi() {
                 for (let i = 0; i < quizzes.length; i++) {
                     let question = {
                         numb: i + 1,
-                       picture: quizzes[i].picture,
-                        // picture: btoa(
-                        //     new Uint8Array(quizzes[i].picture)
-                        //         .reduce((data, byte) => data + String.fromCharCode(byte), '')
-                        // ),
+                        picture: quizzes[i].picture,
                         subject: quizzes[i].subject,
                         difficulty: quizzes[i].difficulty,
                         timeAnswered: quizzes[i].timeAnswered,

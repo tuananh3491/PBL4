@@ -19,7 +19,8 @@ async function postData(url = "", data = {}) {
         mode: "cors",
         body: JSON.stringify(data)
     });
-    return response.json(); // parses JSON response into native JavaScript objects
+    const jsonData = await response.json();
+    return {status: response.status, body: jsonData}; // parses JSON response into native JavaScript objects
 }
 async function getData(url = "", data = []) {
     // Default options are marked with *
@@ -28,14 +29,21 @@ async function getData(url = "", data = []) {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Basic " + btoa("son:abcdd")
+            // "Authorization": "Basic " + btoa("son:abcdd")
         },
         mode: "cors",
         body: JSON.stringify(data)
     });
     console.log(response);
-    if (response.status === 200) return response.json();
-    else return null;
+    var jsonData = null;
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+        jsonData = await response.json();
+    } else {
+        jsonData = await response.text();
+    }
+    
+    return {status: response.status, body: jsonData}
      // parses JSON response into native JavaScript objects
 }
 // let button = form.submit.addEventListener("click", (e) => {
@@ -64,14 +72,21 @@ var Login= document.querySelector('.Login');
 let button = form.submit.addEventListener("click", (e) => {
     
     const login = 'http://localhost:8080/api/user/cofirm_gmail';
-    getData(login, [form.email.value]).then((data) => {           
-            token = JSON.stringify(data);
+    getData(login, [form.email.value, form.user.value]).then((data) => {           
+        if(data.status === 200){
+            token = JSON.stringify(data.body);
             console.log(token);
             cofirm_gmail.style.display = 'block';
-    Login.style.display = 'none';
-    }).catch((err) =>{
-        console.log(err);
-    });
+            Login.style.display = 'none';
+        }
+        else {
+            alert(data.body);
+        }
+    })
+    // .catch((err) =>{
+    //     console.log(err);
+    // })
+    ;
 });
 
 var txtToken;
@@ -90,12 +105,17 @@ btnConfirmToken.addEventListener('click', function() {
             status: 1       
         }
     ).then((data) => {
-        if (data == null) {
-            alert("gmail hoặc mật khẩu không đúng"); // Hiển thị thông báo lỗi
-        } else {
-            localStorage.setItem('data', JSON.stringify(data));
-            window.location.href = '../Html/HomeGame.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
+        if (data.status === 201) {
+            if(data.body == null){
+                alert("Sai tài khoản hoặc mật khẩu.")
+            }
+            else
+            {
+                sessionStorage.setItem('data', JSON.stringify(data.body));
+                window.location.href = '../Html/HomeGame.html'; // Chuyển hướng đến trang mục tiêu khi tên đăng nhập và mật khẩu đúng
+            }
         }
+        else if (data.status === 208) alert(data.body);
     }).catch((err) =>{
         console.log(err);
     });

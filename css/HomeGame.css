@@ -403,11 +403,19 @@ tr:nth-child(even) {
     padding: 6%;
     margin: 0;
 }
+.question-text{
+    margin: 10px;
+    max-width: 80%;
+}
 .list-questions {
     display: none;
+    position: relative;
     flex-direction: column;
+    border-radius: 5px;
+    border : solid 2px ;
+    padding: 10px,10px,10px,10px;
     background-color: white;
-    min-width: 85%;
+    width: 85%;
     min-height: auto;
     font-family: var(--font-family);
 }
@@ -415,13 +423,15 @@ tr:nth-child(even) {
 .countdown-timer {
     display: flex;
     position: absolute;
-    right: 10%;
+    right: 0;
     width: 140px;
     background-color: var(--theThuc-color);
     height: 50px;
     border: 3px solid white;
     padding: 10px;
+    /* Các thuộc tính khác cho countdown timer */
 }
+
 
 .question-choose-one {
     margin-top: 10px; /* Khoảng cách giữa countdown-timer và question-choose-one */
