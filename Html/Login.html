@@ -60,8 +60,51 @@
                     </div>
                 </div>
             </form>
+            <form action="" class="resetpassword">
+                <div class="box-login">
+                    <div class="title-login">
+                        <h2>ĐẶT LẠI MẬT KHẨU</h2>
+                    </div>
+                    <div class="inputlogin" id="send_email">
+                        <p class="titlelogin">Email</p>
+                        <div class="user">
+                            <i class="fas fa-sync-alt"></i>
+                            <input class="form-control inputtxt" id="txt_gmail" type="text" style="width: 250px;">
+                        </div>
+                        <div class="container" style="padding: 10px; text-align: center;">
+                            <input class="btnLogin" id="btn_resetpassword" type="button" value="GỬI" style="margin: auto;">
+                        </div>
+                    </div>
+                    <div class="inputlogin" id="confirm_token">
+                        <p class="titlelogin">Nhập mã xác nhận</p>
+                        <div class="user">
+                            <input class="form-control inputtxt" id="txt_token" type="text" style="width: 250px;">
+                        </div>
+                        <div class="container" style="padding: 10px; text-align: center;">
+                            <input class="btnLogin" id="btn_cofirm_token" type="button" value="Xác nhận" style="margin: auto;">
+                        </div>
+                    </div>
+                    <div class="inputlogin" id="new_password">
+                        <p class="titlelogin">Nhập mật khẩu mới </p>
+                        <div class="user">
+                            <input class="form-control inputtxt" id="txt_password_new" type="text" style="width: 250px;">
+                        </div>
+                        <p class="titlelogin">Nhập lại mật khẩu mới </p>
+                        <div class="user">
+                            <input class="form-control inputtxt" id="txt_password_new_again" type="text" style="width: 250px;">
+                        </div>
+                        <div class="container" style="padding: 10px; text-align: center;">
+                            <input class="btnLogin" id="btn_cofirm_password" type="button" value="Xác nhận" style="margin: auto;">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
+    
+    <script src="../js/jquery/jquery-3.7.1.min.js"></script>
     <script src="../js/Login.js"></script>
+    <!-- <script src="../js/handleLogoutOnExitBrowser.js"></script> -->
 </body>
 </html>

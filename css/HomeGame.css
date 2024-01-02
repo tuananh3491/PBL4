@@ -21,6 +21,11 @@
     --theThuc-color: #F1F1F1;
     --font-family: 'Quicksand-Bold' , sans-serif;
     --font-logo: 'Titan One' , sans-serif;
+    --blue: #32325d;
+    --gray: #F5F6FA;
+    --dark-gray: #6b7c93;
+    --white: #fff;
+    --border-rounded: 6px;
 }
 
 
@@ -114,6 +119,13 @@
     height: 100px;
     background-color: #ddd;
     margin-right: 8px;
+    max-width: 100px;
+    position: relative;
+}
+.main-container .game-main .Profile .avatar img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .main-container .game-main .Profile .igame{
     border: none;
@@ -131,6 +143,74 @@
     color: white;
 }
 
+.main-container .box-login{
+    position: absolute;
+    right: 30%;
+    top: 20%;
+    width: 360px;
+    height: 390px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: var(--font-family);
+    color: #5F5F5F;
+}
+.title-login{
+    padding: 30px;
+    padding-bottom: 10px;
+    margin: 0px;
+}
+.titlelogin{
+    margin: 0%;
+}
+.inputregister{
+    padding-top: 10px;
+}
+.btnLogin{
+    display: inline-block;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    border: 0px;
+    border-radius: 15px;
+    background-color: #0BC2CF;
+    color: white;
+}
+.main-container .box-login .btnLogin:hover{
+    background-color: #254a90;
+}
+
+
+.main-container .box-login .inputGender{
+    padding: 10px;
+    padding-right: 60px;
+    display: flex;
+    justify-content:left;
+    align-items: initial;
+    justify-content: initial;
+    flex-direction: row;
+}
+/* change-password */
+.main-container .box-change-password{
+    position: absolute;
+    right: 30%;
+    top: 20%;
+    width: 360px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    font-family: var(--font-family);
+    color: #5F5F5F;
+}
+
+
 /* list room */
 .main-container .game-main .room{
     display: none;
@@ -139,6 +219,9 @@
     color: white;
 }
 .main-container .game-main .room .list-room{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
     width: 80%;
     height: 500px;
     background-color: #9A49AA;
@@ -149,6 +232,7 @@
     color: black;
     width: 40%;
     margin: 10px;
+    margin-left: 30px;
 }
 .main-container .game-main .room .list-room .room-child .t-room{
     margin: 0;
@@ -209,6 +293,41 @@
     font-family: var(--font-family);
     color: white;
 }
+
+/* xếp hạng */
+.main-container .ranked-list{
+    display: none;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    flex-direction: column;
+    width: 670px;
+    background-color: #9A49AA;
+    align-items: center;
+    border-radius: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 600px; /* Set the width of the table */
+    margin: 20px; /* Add margin for spacing */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2; /* Background color for header */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+
 /* nút bên phải*/
 .custom-dropdown {
     position: absolute;
@@ -245,6 +364,7 @@
     
 }
 
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -274,3 +394,248 @@
 
 
 
+/* Luyện tập */
+.practice {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 6%;
+    margin: 0;
+}
+.question-text{
+    margin: 10px;
+    max-width: 80%;
+}
+.list-questions {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    border-radius: 5px;
+    border : solid 2px ;
+    padding: 10px,10px,10px,10px;
+    background-color: white;
+    width: 85%;
+    min-height: auto;
+    font-family: var(--font-family);
+}
+
+.countdown-timer {
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 140px;
+    background-color: var(--theThuc-color);
+    height: 50px;
+    border: 3px solid white;
+    padding: 10px;
+    /* Các thuộc tính khác cho countdown timer */
+}
+
+
+.question-choose-one {
+    margin-top: 10px; /* Khoảng cách giữa countdown-timer và question-choose-one */
+}
+
+.list-answers {
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(2, 1fr); /* Chia thành 2 cột */
+    grid-gap: 20px; /* Khoảng cách giữa các ô */
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    background: transparent;
+    border: 4px solid black;
+    border-radius: 4px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: .3s;
+    color: black;
+}
+.option.choose{
+    background: #fff;
+    border: #3166C7 solid 4px;
+    color: #3166C7;
+}
+.option:hover {
+    background: #fff;
+    border: #3166C7 solid 4px;
+    color: #3166C7;
+}
+.option.correct {
+    background:  #7cd39c;
+    color: #00a63d;
+    border-color: #00a63d;
+}
+.option.incorrect {
+    background: #d496b0;
+    color: #a60045;
+    border-color: #a60045;
+}
+
+/* input answer */
+.optionList{
+    width: 100%;
+}
+.inp-answers {
+    width: 80%;
+    margin: 5px;
+    margin-left: 90px;
+}
+.inp-answers.correct {
+    background:  #7cd39c;
+    color: #00a63d;
+    border-color: #00a63d;
+}
+.inp-answers.incorrect {
+    background: #d496b0;
+    color: #a60045;
+    border-color: #a60045;
+}
+.list-questions .button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.list-questions .button .btn-submit {
+    background-color: #655DCA;
+    padding-right: 10px;
+    margin-right: 40px;
+    width: 120px;
+    height: 40px;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.list-questions .button .btn-next {
+    padding-right: 10px;
+    margin-left: 40px;
+    background-color: #655DCA;
+    width: 120px;
+    height: 40px;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.list-questions .button .btn-next:hover {
+    background-color: #3166C7;
+}
+.list-questions .button .btn-submit:hover {
+    background-color: #3166C7;
+}
+.list-questions .button .btn-submit:disabled {
+    background-color: #a8af7e;
+}
+.main-container .btn-exit{
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 10px;
+    background-color: none;
+}
+.main-container .btn-exit .exit-button{
+    background-color: #0BC2CF;
+    border: none;
+    font-size: 50px;
+    color: white;
+}
+.main-container .btn-exit .exit-button:hover{
+    color: #9A49AA;
+}
+
+.main-container .btn-ready{
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+}
+.main-container .btn-ready .ready-button{
+    background-color: #FEB31A;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    border: 5px solid #EF7426;
+    font-size: 20px;
+    font-family: var(--font-family);
+    color: white;
+}
+
+#inp-igame{
+    padding: 0;
+    background-color: none;
+    border: none;
+    text-align: center;
+    width: 100px;
+    background-color: #9A49AA;
+    color: white;
+}
+
+/* Popup UI */
+.popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: var(--border-rounded);
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 40px -14px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  /* Popup Texts & button */
+  .popup-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .popup-title {
+    color: var(--blue);
+    font-size: 1.8em;
+    line-height: 1.5em;
+    font-weight: 900;
+    margin-top: 0;
+  }
+  
+  .popup-body {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    color: var(--dark-gray);
+    font-weight: 500;
+    margin-bottom: 2.1em;
+  }
+  
+  /* Button Link */
+  .popup-button {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-radius: var(--border-rounded);
+      margin: 10px;
+      padding: 1em 3em;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+      background-image: linear-gradient(to right, #895cf2 0%, #ffabf4 50%, #895cf2 100%);
+      transition: 0.5s;
+      border: none; /* Loại bỏ border của button */
+      cursor: pointer; /* Thêm cursor pointer */
+      outline: none; /* Loại bỏ outline khi focus */
+    }
+  
+  .popup-button:hover {
+    background-position: right center;
+  }

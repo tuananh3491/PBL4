@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="../css/Bootstrapcss/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/HomeGame.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="../js/bootstrapjs/bootstrap.bundle.js"></script>
+    
 </head>
 <body>
     <div class="main-container">
         <div class="menu">
             <div class="navbar-header header">
-                <a href="../Html/TrangChu.html" class="btn-header logo-text">uQuizzes</a>
+                <a href="#" class="btn-header logo-text">uQuizzes</a>
             </div>
             <div class="btn-play">
                 <button type="button" class="btn btn-primary icon-button" onclick="createRoom()">
@@ -27,45 +27,102 @@
                     <i class="fa-solid fa-ticket iconbtn"></i>
                     Phòng đấu
                 </button>
-                <button type="button" class=" button-menu " >
+                <button type="button" class=" button-menu "onclick="make_practice()" >
                     <i class="fa-solid fa-feather iconbtn"></i>
                     Luyện tập
                 </button>
-                <button type="button" class=" button-menu" >
+                <button type="button" class=" button-menu"onclick="listRanked()" >
                     <i class="fas fa-trophy iconbtn"></i>
                     Xếp hạng
                 </button>
             </div>   
         </div>
         <div class="game-main">
-            <div class="Profile">
-                <div class="avatar">
-                    
-                </div>
-                <div class="name-igame">
-                    <input type="text" class="igame inp-name" disabled>
-                    <div class="match">
-                        <div style="display: flex;">
-                            <p>Số trận:</p>
-                            <input type="text" id="inp-played" style="border: none; background-color: #0BC2CF;color:white; height: 25px;" disabled>
-                        </div>
-                        <div style="display: flex;">
-                            <p>Thắng:</p>
-                            <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;color: white; height: 25px;"disabled>
+            <div class="main-profile">
+                <div class="Profile">
+                    <div class="avatar">
+                        <img src="../picture/avatar.jpg" alt="">
+                    </div>
+                    <div class="name-igame">
+                        <input type="text" class="igame inp-name" disabled>
+                        <div class="match">
+                            <div style="display: flex;">
+                                <p style="margin-bottom: 5px; margin-top: 5px;"><i class="fa-solid fa-medal"></i></p>
+                                <input type="text" id="inp-played" style="border: none;margin-top: 5px; background-color: #0BC2CF;color:white; height: 25px;" disabled>
+                            </div>
+                            <div style="display: flex;">
+                                <p>Thắng:</p>
+                                <input type="text" id="inp-win" style="border: none; background-color: #0BC2CF;color: white; height: 25px;"disabled>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <form class="profile-form">
+                    <div class="box-login">
+                        <div class="title-login">
+                            <h2>Thông tin</h2>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Họ tên</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="inp-user" type="text" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Email</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="inp-email" type="text" style="width: 250px;" readonly>
+                            </div>
+                        </div>
+                        <div class="inputGender">
+                            <p class="titlelogin" style="padding-right: 20px;">Giới tính:</p>
+                            <div class="user">
+                                <label for="" style="padding-right: 20px;">
+                                    <input type="radio" name="Gender" value="true"> Nam
+                                </label>
+                                <label for="">
+                                    <input type="radio" name="Gender" value="false"> Nữ
+                                </label>
+                            </div>
+                        </div>
+                        <div class="" style="padding: 10px;">
+                            <input class="btnLogin" id="inp-submit" type="button" value="Cập nhật">
+                        </div>
+                    </div>
+                </form>
+                <form class="change-password">
+                    <div class="box-change-password">
+                        <div class="title-login">
+                            <h2>Đổi mật khẩu</h2>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Mật khẩu mới</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="new-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="inputregister">
+                            <p class="titlelogin">Nhập lại mật khẩu mới</p>
+                            <div class="user">
+                                <input class="form-control inputtxt" id="confirm-password" type="password" style="width: 250px;">
+                            </div>
+                        </div>
+                        <div class="" style="padding-top: 30px;">
+                            <input class="btnLogin" id="submit-change" type="button" value="Đổi mật khẩu">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="room">
                 <h2>Danh sách phòng</h2>
                 <div class="list-room">
                     
                 </div>
-                <div class="btn-inroom">
+                <!-- <div class="btn-inroom">
                     <button class="inroom-button">
                         Vào phòng
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="create-room">
                 <!-- <form action=""> -->
@@ -86,21 +143,110 @@
                     <button class="btn-create" id="btn-create">Tạo phòng</button>
                 <!-- </form> -->
             </div>
+            <div class="ranked-list">
+                <section><h3 style="color: white;"><i class="fas fa-trophy iconbtn" style="color: rgb(233, 208, 85);"></i> Bảng xếp hạng</h3></section>
+                <section>
+                    <table class="list-R">
+                        <thead>
+                            <tr>
+                                <th>Xếp hạng</th>
+                                <th>Tên</th>
+                                <th>Điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rank-content">
+                            <tr>
+                                <td>1</td>
+                                <td>Anh</td>
+                                <td>1000000000000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Tuấn Anh</td>
+                                <td>1000</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>1</td>
+                                <td>Anh</td>
+                                <td>1000</td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <div class="practice">
+                <div class="popup" id="introl">
+                    <div class="popup-content">
+                      <h2 class="popup-title">Luyện tập</h2>
+                      <p class="popup-body">Luyện tập để giỏi hơn nào </p>
+                      <button class="popup-button" id="btn_start">Bắt đầu</button>
+                    </div>  
+                </div>  
+                <div class="list-questions">
+                    <div class="countdown-timer">
+                        <p>Thời gian:</p>
+                        <div class="timer-sec" id="countdown" style="color: red;"></div>
+                    </div>
+                    <div class="question-choose-one">
+                        <h3 class="question-text"></h3>
+                        <h3 class="question-text" id="in4_detail"></h3>
+                        <div class="optionList">
+                            <div class="list-answers">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button class="btn-submit" id="btn-answer">Trả lời</button>
+                        <button class="btn-next">Câu kế tiếp</button>
+                    </div>
+                </div>
+                <div class="popup" id="result_table">
+                    <div class="popup-content">
+                      <h2 class="popup-title">Kết quả</h2>
+                      <p class="popup-body" id="result_content"></p>
+                      <button class="popup-button" id="btn_again">Làm lại</button>
+                    </div>  
+                </div> 
+            </div>
         </div>
         <div class="custom-dropdown">
             <button class="dropdown-button" onclick="toggleDropdown()" >
                 <input type="text" class="inp-name inp-igame" disabled>
             </button>
             <div class="dropdown-content">
-                <button class="account-button">
+                <button class="account-button" onclick="profile_func()">
                     <i class="fa-solid fa-gear"></i>
                     Cài đặt</button>
-                <a href="../Html/TrangChu.html" class="account-button" style="color: black; text-decoration: none;">
+                <button class="account-button" onclick="change_password()">
+                    <i class="fa-solid fa-lock"></i>
+                    Đổi mật khẩu</button>
+                <div class="account-button" id="btn-logout" style="color: black; text-decoration: none;">
                     <i class="fa-solid fa-right-from-bracket "></i>
-                    Đăng xuất</a>
+                    Đăng xuất   
+                </div>
             </div>
         </div>
     </div>
+    <script src="../js/jquery/jquery-3.7.1.min.js"></script>
     <script src="../js/HomeGame.js"></script>
+    <!-- <script src="../js/handleLogoutOnExitBrowser.js"></script> -->
 </body>
 </html>

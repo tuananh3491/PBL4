@@ -61,16 +61,7 @@
     margin-left: 100px;
     border-radius: 10px;
 }
-.nguoichoi{
-    height: 50px;
-    width: 200px;
-    border-radius: 5px;
-    text-align: center;
-    margin: 10px;
-    padding: 10px;
-    background-color: #fff;
-    font-family: var(--font-family);
-}
+
 .main-container .inf-room{
     display: flex;
     position: fixed;
@@ -86,19 +77,11 @@
     margin-left: 5px;
 }
 /* play */
-.question-text{
-    margin: 10px;
-    max-width: 80%;
-}
 .list-questions {
     display: none;
-    position: relative;
     flex-direction: column;
-    border-radius: 5px;
-    border : solid 2px ;
-    padding: 10px,10px,10px,10px;
     background-color: white;
-    width: 85%;
+    width: 80%;
     min-height: auto;
     font-family: var(--font-family);
 }
@@ -106,21 +89,18 @@
 .countdown-timer {
     display: flex;
     position: absolute;
-    right: 0;
-    width: 140px;
+    right: 10%;
+    width: 150px;
     background-color: var(--theThuc-color);
     height: 50px;
     border: 3px solid white;
     padding: 10px;
-    /* Các thuộc tính khác cho countdown timer */
 }
 
 .question-choose-one {
     margin-top: 10px; /* Khoảng cách giữa countdown-timer và question-choose-one */
 }
-.question-choose-one .question-text{
-    margin: 10px,10px,10px,10px;
-}
+
 .list-answers {
     display: grid;
     padding: 10px;
@@ -181,11 +161,6 @@
     background: #d496b0;
     color: #a60045;
     border-color: #a60045;
-}
-.list-questions{
-    border-radius: 5px;
-    border : solid 2px ;
-    padding: 10px,10px,10px,10px;
 }
 .list-questions .button{
     display: flex;
