@@ -6,8 +6,9 @@ var viewRank = document.querySelector(".ranked-list");
 var boxlogin = document.querySelector(".box-login");
 var boxchange = document.querySelector(".box-change-password");
 var practice = document.querySelector(".practice");
-var popup = document.querySelector(".popup");
+var popup = document.querySelector("#introl");
 var list_questions = document.querySelector(".list-questions");
+var result_table = document.querySelector("#result_table");
 var optionList = document.querySelector('.optionList');
 var profile_form = null;
 practice.style.display = 'none';
@@ -76,6 +77,7 @@ function make_practice()
     viewRank.style.display = 'none';
     practice.style.display = 'flex';
     list_questions.style.display = 'none';
+    result_table.style.display = 'none';
     popup.style.display = 'flex';
 }
 function listRoom(){
@@ -485,12 +487,16 @@ function choosen (answer) {
 }
 function showResult()
 {
-    alert("Số câu đúng là: " + userScore);
+    list_questions.style.display = 'none';
+    result_table.style.display = 'flex';
+    var result_content = document.querySelector('#result_content');
+    result_content.textContent = "Số câu đúng là : " + userScore;
 }
 // Lấy thẻ button bằng id
-var startButton = document.querySelector(".popup-button");
+var startButton = document.querySelector("#btn_start");
 function lamcauhoi() {
     popup.style.display = 'none';
+    result_table.style.display = 'none';
     list_questions.style.display = 'block';
    document.querySelector('.list-questions').innerHTML = `<div class="countdown-timer">
                                 <p>Thời gian:</p>
@@ -624,3 +630,5 @@ function lamcauhoi() {
 }
 
 startButton.addEventListener('click', lamcauhoi);
+var startButton = document.querySelector("#btn_again");
+btn_again.addEventListener('click', lamcauhoi);
