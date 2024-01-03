@@ -12,7 +12,23 @@ var profile_form = null;
 var boxchange = document.querySelector(".box-change-password");
 var boxlogin = document.querySelector(".box-login")
 practice.style.display = 'none';
-
+phanquyen();
+function phanquyen()
+{
+    var menu_button = document.querySelector(".menu-button");
+    var _data = JSON.parse(sessionStorage.getItem("data"));
+    if(_data.role == true)
+    {
+        menu_button.innerHTML += `<button type="button" class=" button-menu"onclick="CRUD_Quizz()" >
+                                        <i class="fas fa-trophy iconbtn"></i>
+                                        Câu hỏi
+                                    </button>`;
+    }
+}
+function CRUD_Quizz()
+{
+    window.location.href = "../Html/Quizz.html";
+}
 async function getData(url = "") {
     // Default options are marked with *
     const response = await fetch(url, {

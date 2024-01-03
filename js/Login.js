@@ -11,7 +11,6 @@ async function getData(url = "", data = []) {
     // Default options are marked with *
     console.log(data);
     const response = await fetch(url, {
-        credentials: 'include',
         method: 'PUT',
         headers: {
             "Content-Type": "application/json"
@@ -97,6 +96,8 @@ var txtToken;
 var btnConfirmToken = document.getElementById('btn_cofirm_token');
 btnConfirmToken.addEventListener('click', function() {
     txtToken = document.getElementById('txt_token').value;
+    console.log(token);
+    console.log(txtToken);
     if (txtToken == token) {
         confirm_token.style.display = 'none';
         new_password.style.display = 'block';
@@ -125,6 +126,3 @@ btnConfirmToken.addEventListener('click', function() {
        alert("Mật khẩu không giống nhau");
     }
 });
-$(function(){
-    document.cookie = 'JSESSIONID=AFAFWEEVV2323GG'
-})
